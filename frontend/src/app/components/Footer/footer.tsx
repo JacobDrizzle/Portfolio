@@ -4,7 +4,7 @@
 export default function Footer() {
     return (
       <div className="container px-6 py-12 mx-auto">
-          <hr className="my-6 border-gray-600 md:my-8 dark:border-gray-700" />
+          <hr className="my-6 border-gray-600 md:my-8 dark:border-gray-700 hover:border-emerald-400 dark:hover:border-emerald-400" />
           <p className="mt-4 text-sm text-gray-500 sm:mt-0 dark:text-gray-300 text-center">Jacob Drizzle © Copyright 2024. All Rights Reserved.</p>
           <div className="flex flex-col items-center sm:flex-row sm:justify-between">
             <div className="flex mx-auto pt-4">
