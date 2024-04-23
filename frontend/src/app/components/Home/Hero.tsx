@@ -2,6 +2,7 @@ import Head from 'next/head';
 import HeroCard from './card';
 import { ProjectsGrid } from './grid_container';
 import Navbar from './nav';
+import Footer from '../Footer/footer';
 
 const Hero = () => {
     const heroCards = [
@@ -20,13 +21,14 @@ const Hero = () => {
     ];
   
     return (
-      <div className="pt-4 justify-center px-12 bg-slate-900 dark:bg-black">
+      <div className="pt-4 pb-4 justify-center px-12 bg-slate-900 dark:bg-black">
         <Navbar />
         <h1 className="text-2xl pt-4 text-center font-bold">JacobDrizzle.dev</h1>
         {heroCards.map((card, index) => (
           <HeroCard key={index} title={card.title} sub_title={card.sub_title} description={card.description}  alt_description={card.alt_description}/>
         ))}
         <ProjectsGrid />
+        <Footer />
       </div>
     );
 }
