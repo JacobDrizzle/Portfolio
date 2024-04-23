@@ -15,7 +15,7 @@ import Image from "next/image";
 export function ProjectsGrid() {
   return (
     <div className="max-w-4xl mt-6 mx-auto md:auto-rows-[20rem]">
-        <h1 className="text-xl  mt-8 font-extrabold text-neutral-300 dark:text-neutral-300">Projects Ive built</h1>
+        <h1 className="text-xl  mt-8 font-extrabold text-neutral-200 dark:text-neutral-300">Things Ive Built</h1>
         <BentoGrid className="mt-6">
         {items.map((item, i) => (
             <BentoGridItem

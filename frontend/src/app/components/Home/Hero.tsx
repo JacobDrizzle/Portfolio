@@ -15,7 +15,7 @@ const Hero = () => {
     {
         title: 'What I Build With!',
         sub_title: 'What im Working on.',
-        description: 'My toolbox consist of C++, Java, with a dash of TypeScirpt and Python. If you\'re on the hunt for an versatile virtuoso who\'s also got some backend boogie, look no further. Hit me up!',     
+        description: 'My toolbox consist of C++, Java, with a dash of TypeScirpt and Python. If you\'re on the hunt for an versatile virtuoso who also knows how to handle a backend, look no further. Hit me up!',     
         alt_description: 'One of my current undertakings involves collaborating with my brother on building a cutting-edge graphics API for a game engine. This project not only allows me to flex my technical muscles but also reinforces the importance of teamwork and creative problem-solving.'
       }
     ];
@@ -23,7 +23,7 @@ const Hero = () => {
     return (
       <div className="pt-4 pb-4 justify-center px-12 bg-slate-900 dark:bg-black">
         <Navbar />
-        <h1 className="text-2xl pt-4 text-center font-bold">JacobDrizzle.dev</h1>
+        <h1 className="text-2xl pt-6 text-emerald-300 text-center font-bold">JacobDrizzle.dev</h1>
         {heroCards.map((card, index) => (
           <HeroCard key={index} title={card.title} sub_title={card.sub_title} description={card.description}  alt_description={card.alt_description}/>
         ))}

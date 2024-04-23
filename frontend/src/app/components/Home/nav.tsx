@@ -4,7 +4,7 @@ const Navbar  = () => {
   return (
     <div>
     <nav className="flex justify-center">
-        <ul className="flex flex-row justify-center bg-slate-900 dark:bg-black py-4 px-24 rounded-xl border border-neutral-500 dark:border-[rgba(255,255,255,0.1)]">
+        <ul className="flex flex-row justify-center bg-slate-900 dark:bg-black py-4 px-24 rounded-3xl border border-[rgba(255,255,255,0.2)]">
           <li className="mr-4">
             <a href="#" className="text-gray-100 hover:text-gray-400">
               Resume
