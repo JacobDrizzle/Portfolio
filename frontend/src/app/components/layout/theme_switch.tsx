@@ -6,7 +6,7 @@ import { RiMoonLine, RiSunLine } from "react-icons/ri";
 const DarkModeToggle = () => {
   const { theme, setTheme } = useTheme();
   return (
-    <button
+    <button className="hover:text-emerald-300"
       onClick={() => (theme == "dark" ? setTheme("light") : setTheme("dark"))}>
       {theme === "light" ? (
         <RiMoonLine/>
