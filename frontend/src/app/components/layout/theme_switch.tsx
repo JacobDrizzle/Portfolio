@@ -34,7 +34,7 @@ const DarkModeToggle = () => {
 
   return (
     <button
-      className="hover:text-emerald-300"
+      className="mr-6 text-white hover:text-emerald-300"
       onClick={handleToggle}
     >
       {/* Render the correct icon based on the theme state */}

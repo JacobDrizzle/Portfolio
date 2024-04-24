@@ -1,6 +1,5 @@
 import Footer from "../Footer/footer";
 import HeroCard from "../Home/card";
-import { ProjectsGrid } from "../Home/grid_container";
 import Navbar from "../Home/nav";
 
 const ResumeHero = () => {
@@ -20,13 +19,14 @@ const ResumeHero = () => {
     ];
   
     return (
-      <div className="pt-4 pb-4 justify-center px-12 bg-slate-900 dark:bg-black">
+        <div className="justify-center bg-slate-900 dark:bg-black`">
         <Navbar />
-        <h1 className="text-2xl pt-6 text-emerald-300 text-center font-bold">JacobDrizzle.dev</h1>
-        {heroCards.map((card, index) => (
-          <HeroCard key={index} title={card.title} sub_title={card.sub_title} description={card.description}  alt_description={card.alt_description}/>
-        ))}
-        <Footer />
+        <div className="pt-4 pb-4 px-12">
+          {heroCards.map((card, index) => (
+            <HeroCard key={index} title={card.title} sub_title={card.sub_title} description={card.description}  alt_description={card.alt_description}/>
+          ))}
+          <Footer />
+        </div>
       </div>
     );
 }

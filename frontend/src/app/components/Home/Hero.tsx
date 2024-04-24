@@ -3,6 +3,8 @@ import HeroCard from './card';
 import { ProjectsGrid } from './grid_container';
 import Navbar from './nav';
 import Footer from '../Footer/footer';
+import Image from 'next/image';
+import ImageCard from './image_container';
 
 const Hero = () => {
     const heroCards = [
@@ -21,14 +23,22 @@ const Hero = () => {
     ];
   
     return (
-      <div className="pt-4 pb-4 justify-center px-12 bg-slate-900 dark:bg-black">
+      <div className="justify-center bg-slate-900 dark:bg-black min-h-vh100">
         <Navbar />
-        <h1 className="text-2xl pt-6 text-emerald-300 text-center font-bold">JacobDrizzle.dev</h1>
-        {heroCards.map((card, index) => (
-          <HeroCard key={index} title={card.title} sub_title={card.sub_title} description={card.description}  alt_description={card.alt_description}/>
-        ))}
-        <ProjectsGrid />
-        <Footer />
+        <div className="pt-4 pb-4 px-12">
+          <h1 className="text-4xl 2xl:mx-[330px] font-mono mt-8 font-extrabold text-sky-500 dark:text-neutral-300">&gt; About</h1>
+          <h1 className="text-xl 2xl:mx-[330px] font-mono mt-3 font-extrabold text-gray-500 dark:text-neutral-300">Just your average dev...</h1>
+          <div className="md:flex sm:flex-column justify-center gap-5">
+            <div>
+              {heroCards.map((card, index) => (
+                <HeroCard key={index} title={card.title} sub_title={card.sub_title} description={card.description}  alt_description={card.alt_description}/>
+              ))}
+            </div>
+            <ImageCard />
+          </div>
+              <ProjectsGrid />
+              <Footer />
+        </div>
       </div>
     );
 }
