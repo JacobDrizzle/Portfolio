@@ -10,7 +10,7 @@ const HeroCard: React.FC<CardProps>  = ({title, sub_title, description, alt_desc
     <div className="pt-4 flex justify-center">
       <div className='bg-slate-800 max-w-3xl dark:bg-black p-4 text-slate-950 w-fit 
           border border-neutral-500 dark:border-[rgba(255,255,255,0.1)] hover:border-emerald-400
-          dark:hover:border-emerald-400 rounded-2xl shadow-2xl shadow-black'>
+          dark:hover:border-emerald-400 rounded-2xl shadow-2xl shadow-black dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1]'>
           <h1 className="text-xl font-mono font-extrabold text-neutral-300 dark:text-neutral-300">
             {title}
           </h1>
