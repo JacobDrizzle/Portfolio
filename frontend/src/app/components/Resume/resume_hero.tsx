@@ -15,11 +15,17 @@ const ResumeHero = () => {
         sub_title: 'What im Working on.',
         description: 'My toolbox consist of C++, Java, with a dash of TypeScirpt and Python. If you\'re on the hunt for an versatile virtuoso who also knows how to handle a backend, look no further. Hit me up!',     
         alt_description: 'One of my current undertakings involves collaborating with my brother on building a cutting-edge graphics API for a game engine. This project not only allows me to flex my technical muscles but also reinforces the importance of teamwork and creative problem-solving.'
+      },
+      {
+        title: 'What I Build With!',
+        sub_title: 'What im Working on.',
+        description: 'My toolbox consist of C++, Java, with a dash of TypeScirpt and Python. If you\'re on the hunt for an versatile virtuoso who also knows how to handle a backend, look no further. Hit me up!',     
+        alt_description: 'One of my current undertakings involves collaborating with my brother on building a cutting-edge graphics API for a game engine. This project not only allows me to flex my technical muscles but also reinforces the importance of teamwork and creative problem-solving.'
       }
     ];
   
     return (
-        <div className="justify-center bg-slate-900 dark:bg-black`">
+        <div className="justify-center bg-slate-900 dark:bg-black">
         <Navbar />
         <div className="pt-4 pb-4 px-12">
           {heroCards.map((card, index) => (

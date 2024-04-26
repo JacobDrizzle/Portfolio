@@ -23,11 +23,11 @@ const Hero = () => {
     ];
   
     return (
-      <div className="justify-center bg-slate-900 dark:bg-black min-h-vh100">
+      <div className="justify-center bg-slate-900 dark:bg-black min-h-vh100 min-w-100vw">
         <Navbar />
         <div className="pt-4 pb-4 px-12">
-          <h1 className="text-4xl 2xl:mx-[330px] font-mono mt-8 font-extrabold text-sky-500 dark:text-neutral-300">&gt; About</h1>
-          <h1 className="text-xl 2xl:mx-[330px] font-mono mt-3 font-extrabold text-gray-500 dark:text-neutral-300">Just your average dev...</h1>
+          <h1 className="text-4xl 2xl:mx-[330px] font-mono mt-8 font-extrabold text-sky-500">&gt;About</h1>
+          <h1 className="text-xl 2xl:mx-[330px] font-mono mt-3 font-extrabold text-gray-500">Just your average dev...</h1>
           <div className="md:flex sm:flex-column justify-center gap-4">
             <div>
               {heroCards.map((card, index) => (
