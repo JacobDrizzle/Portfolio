@@ -1,7 +1,5 @@
 import Image from "next/image";
-import Navbar from "./nav";
 import { CardBody, CardContainer, CardItem } from "../ui/3d_card";
-import Link from "next/link";
 
 
 const ImageCard = () => {

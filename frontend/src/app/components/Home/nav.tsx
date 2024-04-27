@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="border-b border-gray-200">
+    <nav className="border-b border-neutral-500 dark:border-[rgba(255,255,255,0.1)] hover:border-emerald-400 dark:hover:border-emerald-400">
       <div className="flex flex-wrap items-center justify-between mx-auto p-4">
         <h1 className="text-2xl left-0 font-mono font-extrabold text-sky-500">{'>'}JacobDrizzle.Dev</h1>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
@@ -30,7 +30,7 @@ const Navbar = () => {
           </button>
         </div>
         <div className={`items-center justify-between w-full md:flex md:w-auto md:order-1 ${isDropdownOpen ? '' : 'hidden'}`} id="navbar-cta">
-          <ul className="flex flex-col mr-36 font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+          <ul className="flex flex-col mr-44 font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
             <li>
               <a href="/resume" className="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:dark:text-blue-500" aria-current="page">Resume</a>
             </li>
