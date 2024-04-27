@@ -1,9 +1,7 @@
-import Head from 'next/head';
 import HeroCard from './card';
 import { ProjectsGrid } from './grid_container';
 import Navbar from './nav';
 import Footer from '../Footer/footer';
-import Image from 'next/image';
 import ImageCard from './image_container';
 
 const Hero = () => {
@@ -36,8 +34,10 @@ const Hero = () => {
             </div>
             <ImageCard />
           </div>
+          <div>
               <ProjectsGrid />
               <Footer />
+          </div>
         </div>
       </div>
     );
