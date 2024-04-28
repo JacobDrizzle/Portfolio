@@ -1,6 +1,7 @@
 import Footer from "../Footer/footer";
 import HeroCard from "../Home/card";
 import Navbar from "../Home/nav";
+import Projects from "./projects";
 
 const ResumeHero = () => {
     const heroCards = [
@@ -31,6 +32,7 @@ const ResumeHero = () => {
           {heroCards.map((card, index) => (
             <HeroCard key={index} title={card.title} sub_title={card.sub_title} description={card.description}  alt_description={card.alt_description}/>
           ))}
+          <Projects />
           <Footer />
         </div>
       </div>
