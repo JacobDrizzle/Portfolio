@@ -28,4 +28,4 @@ export const fetchRepos = async () => {
     } catch (error) {
         throw new Error('Failed to fetch GitHub Repos');
     }
-}
+};
