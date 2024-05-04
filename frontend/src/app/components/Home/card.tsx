@@ -14,7 +14,7 @@ const HeroCard: React.FC<CardProps> = ({
   alt_description,
 }) => {
   return (
-    <div className="pt-4 flex justify-center overflow-hidden">
+    <div className="pt-4 flex flex-col justify-center overflow-hidden">
       <div
         className="bg-slate-800 max-w-3xl dark:bg-black text-slate-950 w-fit 
           border border-neutral-500 dark:border-[rgba(255,255,255,0.1)] hover:border-emerald-400

@@ -1,6 +1,3 @@
-
-'use client';
-
 export default function Footer() {
     return (
       <div className="container px-6 py-12 mx-auto">

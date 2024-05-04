@@ -2,12 +2,12 @@
 import React, { useEffect, useState } from "react";
 import RepoCard from "./repo_card";
 import { fetchRepos } from "@/app/api/github";
-import ProfileCard from "./projects";
 
 interface Repo {
   id: number;
   name: string;
   language: string;
+  languages: string[];
   full_name: string;
   private: boolean;
   description: string;
@@ -35,19 +35,28 @@ const RepoLayout = () => {
     fetchUser();
   }, []);
 
+  if (error) {
+    return <div className="text-red-500">{error}</div>;
+  }
+
+  if (!repos) {
+    return <div className="text-gray-500">Fetching Repos...</div>;
+  }
+
   return (
     <div className="flex flex-col justify-center items-center h-full gap-4 text-neutral-200">
-      <ProfileCard />
-      {repos?.map((repo: Repo) => (
-        <RepoCard
+      <div className="grid xl:grid-cols-2 md:grid-cols-1 gap-10">
+        {repos?.map((repo: Repo) => (
+          <RepoCard
           key={repo.id}
           name={repo.name}
           fullName={repo.full_name}
-          language={repo.language}
+          languages={repo.languages}
           description={repo.description}
           url={repo.html_url}
-        />
-      ))}
+          />
+        ))}
+      </div>
     </div>
   );
 };

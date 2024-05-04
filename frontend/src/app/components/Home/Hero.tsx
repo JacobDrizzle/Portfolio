@@ -1,7 +1,5 @@
 import HeroCard from "./card";
 import { ProjectsGrid } from "./grid_container";
-import Navbar from "./nav";
-import Footer from "../Footer/footer";
 import ImageCard from "./image_container";
 
 const Hero = () => {
@@ -26,10 +24,10 @@ const Hero = () => {
 
   return (
     <div className="pt-4 pb-4 px-12">
-      <h1 className="text-4xl 2xl:mx-[430px] font-mono mt-8 font-extrabold text-sky-500">
+      <h1 className="text-4xl 2xl:mx-[330px] font-mono mt-8 font-extrabold text-sky-500">
         &gt;About
       </h1>
-      <h1 className="text-xl 2xl:mx-[430px] font-mono mt-3 font-extrabold text-gray-500">
+      <h1 className="text-xl 2xl:mx-[330px] font-mono mt-3 font-extrabold text-gray-500">
         Just your average dev...
       </h1>
       <div className="md:flex sm:flex-column justify-center gap-4">

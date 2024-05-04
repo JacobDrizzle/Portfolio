@@ -37,7 +37,7 @@ const ProfileCard = () => {
   }
 
   return (
-    <div className="flex flex-col items-center border border-white rounded-xl w-fit p-6">
+    <div className="flex flex-col items-center border border-white rounded-xl w-fit p-6 bg-slate-800 dark:bg-black">
       <a href="https://github.com/JacobDrizzle" target="_blank">
         <Image
           src={user.avatar_url}
