@@ -313,7 +313,7 @@ const items = [
     icon: <IconClipboardCopy className="h-4 w-4 text-neutral-500" />,
   },
   {
-    title: "Vectorized Postgres DB",
+    title: "Vector embedded Postgres DB",
     description: (
       <span className="text-sm">
         semantic embedding generation, enhanced database querying for movies.

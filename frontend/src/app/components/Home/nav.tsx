@@ -13,7 +13,7 @@ const Navbar = () => {
 
   return (
     <nav className="border-b border-neutral-500 dark:border-[rgba(255,255,255,0.1)] hover:border-emerald-400 dark:hover:border-emerald-400">
-      <div className="flex flex-wrap items-center justify-between mx-auto p-4">
+      <div className="flex flex-wrap items-center justify-between mx-auto p-3">
         <a href="/">        
           <h1 className="text-2xl left-0 font-mono font-extrabold text-sky-500">
             {">"}JacobDrizzle.Dev
@@ -51,7 +51,7 @@ const Navbar = () => {
           }`}
           id="navbar-cta"
         >
-          <ul className="flex flex-col mr-44 font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
+          <ul className="flex flex-col mr-48 font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0">
             <li>
               <a
                 href="/resume"
@@ -71,7 +71,7 @@ const Navbar = () => {
             </li>
             <li>
               <a
-                href="/"
+                href="/contact"
                 className="block py-2 px-3 md:p-0 text-gray-200 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
               >
                 Contact

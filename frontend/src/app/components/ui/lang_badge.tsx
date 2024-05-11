@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { badgeConfigs } from "@/app/utils/languages";
@@ -20,6 +20,8 @@ interface LanguageAttributes {
 const LanguageBadge: React.FC<LanguageBadgeProps> = ({
   languages,
 }: LanguageBadgeProps) => {
+  const [error, setError] = useState<boolean>(false);
+
   const getIconColor = (badgeColor: string) => {
     const hex = badgeColor.replace("#", "") || "000000";
     const [r, g, b] = hex.match(/.{2}/g)?.map((x) => parseInt(x, 16)) || [
@@ -37,6 +39,10 @@ const LanguageBadge: React.FC<LanguageBadgeProps> = ({
     );
   };
 
+  const handleImageError = () => {
+    setError(true);
+  };
+
   return (
     <div className="flex gap-2 md:flex-row flex-col">
       {languages.map((lang, index) => {
@@ -51,15 +57,20 @@ const LanguageBadge: React.FC<LanguageBadgeProps> = ({
             }}
             whileHover={{ scale: 1.05, rotateZ: 2 }}
           >
-            <Image
-              height="20"
-              width="20"
-              alt="l"
-              className="ml-3"
-              src={`https://cdn.simpleicons.org/${
-                langAttributes.icon
-              }/${getIconColor(langAttributes?.color)}`}
-            />
+            {!error ? (
+              <Image
+                height="20"
+                width="20"
+                alt="l"
+                className="ml-3"
+                src={`https://cdn.simpleicons.org/${
+                  langAttributes.icon
+                }/${getIconColor(langAttributes?.color)}`}
+                onError={handleImageError}
+              />
+            ) : (
+              <div>Error loading image</div>
+            )}
             {langAttributes.name}
           </motion.div>
         ) : null;

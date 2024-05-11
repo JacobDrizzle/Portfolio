@@ -31,7 +31,7 @@ const ImageCard = () => {
                         </a>
                     </li>
                     <li className="mr-1 py-2 px-4 bg-transparent hover:bg-[rgba(16,185,129,0.2)]  rounded border-2 border-emerald-300/[0.8]">
-                        <a href="#" className="text-gray-100 font-mono hover:text-emerald-300/[0.8]">
+                        <a href="/contact" className="text-gray-100 font-mono hover:text-emerald-300/[0.8]">
                         Contact
                         </a>
                     </li>
