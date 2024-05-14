@@ -15,7 +15,7 @@ export function ContactForm() {
     console.log("Form submitted");
   };
   return (
-    <div className="mt-20 max-w-md w-full mx-auto rounded-none md:rounded-2xl p-4 md:p-8
+    <div className="mt-20 max-w-md w-full mx-auto rounded-2xl p-4 md:p-8
          shadow-input bg-slate-800 dark:bg-black border border-neutral-500 dark:border-[rgba(255,255,255,0.1)] hover:border-emerald-400
          dark:hover:border-emerald-400">
       <h2 className="font-bold text-xl text-neutral-200">
