@@ -14,7 +14,7 @@ const Navbar = () => {
   return (
     <nav className="border-b border-neutral-500 dark:border-[rgba(255,255,255,0.1)] hover:border-emerald-400 dark:hover:border-emerald-400">
       <div className="flex flex-wrap items-center justify-between mx-auto p-3">
-        <a href="/">        
+        <a href="/">
           <h1 className="text-2xl left-0 font-mono font-extrabold text-sky-500">
             {">"}JacobDrizzle.Dev
           </h1>

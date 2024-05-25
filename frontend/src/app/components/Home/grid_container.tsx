@@ -15,19 +15,21 @@ import Image from "next/image";
 export function ProjectsGrid() {
   return (
     <div className="max-w-6xl mt-6 mx-auto md:auto-rows-[20rem]">
-        <h1 className="text-xl  mt-8 font-extrabold text-neutral-200 dark:text-neutral-300">Things Ive Built</h1>
-        <BentoGrid className="mt-6">
+      <h1 className="text-xl  mt-8 font-extrabold text-neutral-200 dark:text-neutral-300">
+        Things Ive Built
+      </h1>
+      <BentoGrid className="mt-6">
         {items.map((item, i) => (
-            <BentoGridItem
+          <BentoGridItem
             key={i}
             title={item.title}
             description={item.description}
             header={item.header}
             className={cn("[&>p:text-lg]", item.className)}
             icon={item.icon}
-            />
-            ))}
-        </BentoGrid>
+          />
+        ))}
+      </BentoGrid>
     </div>
   );
 }
@@ -327,7 +329,7 @@ const items = [
     title: "AlphaVue Labs",
     description: (
       <span className="text-sm">
-        A cross chain token explorer / trading platform. 
+        A cross chain token explorer / trading platform.
       </span>
     ),
     header: <SkeletonThree />,

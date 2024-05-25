@@ -57,31 +57,38 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
 );
 Input.displayName = "Input";
 
-const Textarea = () => {
+interface TextareaProps {
+  id?: string;
+  placeholder?: string;
+  value: string;
+  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+  className?: string;
+}
+
+const Textarea: React.FC<TextareaProps> = ({ id, placeholder, value, onChange, className }) => {
   const radius = 175;
   const [visible, setVisible] = React.useState(false);
 
-  let mouseX = useMotionValue(0);
-  let mouseY = useMotionValue(0);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
 
   function handleMouseMove({ currentTarget, clientX, clientY }: any) {
-    let { left, top } = currentTarget.getBoundingClientRect();
+    const { left, top } = currentTarget.getBoundingClientRect();
 
     mouseX.set(clientX - left);
     mouseY.set(clientY - top);
   }
+
   return (
     <motion.div
       style={{
         background: useMotionTemplate`
-            radial-gradient(
-              ${
-                visible ? radius + "px" : "0px"
-              } circle at ${mouseX}px ${mouseY}px,
-              var(--emerald-500),
-              transparent 80%
-            )
-          `,
+          radial-gradient(
+            ${visible ? radius + 'px' : '0px'} circle at ${mouseX}px ${mouseY}px,
+            var(--emerald-500),
+            transparent 80%
+          )
+        `,
       }}
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setVisible(true)}
@@ -89,15 +96,22 @@ const Textarea = () => {
       className="p-[2px] rounded-lg transition duration-300 group/input"
     >
       <textarea
+        id={id}
+        placeholder={placeholder}
         className={cn(
-          `flex h-20 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm  file:border-0 file:bg-transparent 
-              file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
-              focus-visible:outline-none focus-visible:ring-[2px]  focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600
-               disabled:cursor-not-allowed disabled:opacity-50
-               dark:shadow-[0px_0px_1px_1px_var(--neutral-700)]
-               group-hover/input:shadow-none transition duration-400`
+          `flex h-20 w-full border-none bg-gray-50 dark:bg-zinc-800 text-black dark:text-white shadow-input rounded-md px-3 py-2 text-sm file:border-0 file:bg-transparent 
+          file:text-sm file:font-medium placeholder:text-neutral-400 dark:placeholder-text-neutral-600 
+          focus-visible:outline-none focus-visible:ring-[2px] focus-visible:ring-neutral-400 dark:focus-visible:ring-neutral-600
+          disabled:cursor-not-allowed disabled:opacity-50 dark:shadow-[0px_0px_1px_1px_var(--neutral-700)]
+          group-hover/input:shadow-none transition duration-400 ${className}`
         )}
-      ></textarea>
+        value={value}
+        onChange={onChange}
+        style={{
+          maxHeight: '200px', // Set maximum height
+          minHeight: '70px', // Set minimum height
+        }}
+      />
     </motion.div>
   );
 };
