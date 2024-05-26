@@ -7,6 +7,7 @@ import { collection, addDoc } from "firebase/firestore";
 import { firestore } from "../../firebaseConfig";
 import Spinner from "../ui/spinner";
 import Confetti from "react-dom-confetti";
+import MessageSuccessModal from "../ui/message_modal";
 
 export function ContactForm() {
   const [loading, setLoading] = useState<boolean>(false);
@@ -23,6 +24,7 @@ export function ContactForm() {
   const [messageValid, setMessageValid] = useState<boolean>(true);
   const [messageError, setMessageError] = useState<string>("");
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
+  const [modalOpen, setModalOpen] = useState<boolean>(true);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const nameRegex = /^[A-Za-z]+$/;
@@ -103,6 +105,7 @@ export function ContactForm() {
         setLoading(false);
         // Show confetti
         setShowConfetti(true);
+        setModalOpen(true);
         // Reset confetti after 2 seconds
         setTimeout(() => {
           setShowConfetti(false);
@@ -228,6 +231,15 @@ export function ContactForm() {
           <Confetti active={showConfetti} />
         </div>
 
+          <MessageSuccessModal
+            isOpen={modalOpen}
+            onClose={() => setModalOpen(false)}
+          >
+            <h2 className="text-2xl font-bold">Message Sent!</h2>
+            <p className="mt-4">
+              Thank you for reaching out. Ill get back to you soon.
+            </p>
+          </MessageSuccessModal>
         <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent my-8 h-[1px] w-full" />
       </form>
     </div>
