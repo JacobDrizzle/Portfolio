@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import RepoCard from "./repo_card";
 import { fetchRepos } from "@/app/api/github";
+import RepoSkeleton from "../ui/repo_skeleton";
 
 interface Repo {
   id: number;
@@ -17,10 +18,12 @@ interface Repo {
 const RepoLayout = () => {
   const [repos, setRepos] = useState<Repo[] | null>(null);
   const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchUser = async () => {
       try {
+        setLoading(true);
         const repo_response = await fetchRepos();
         // Filter out repos where language is empty string
         const filteredRepos = repo_response.filter(
@@ -28,6 +31,7 @@ const RepoLayout = () => {
         );
         console.log("Repos: ", repo_response);
         setRepos(filteredRepos);
+        setLoading(false);
       } catch (error) {
         setError("Failed to fetch GitHub user data");
       }
@@ -39,8 +43,19 @@ const RepoLayout = () => {
     return <div className="text-red-500">{error}</div>;
   }
 
-  if (!repos) {
-    return <div className="text-gray-500">Fetching Repos...</div>;
+  if (loading) {
+   return (
+    <div className="flex flex-col justify-center items-center h-full gap-4 mt-8 text-neutral-200">
+    <div className="grid xl:grid-cols-2 md:grid-cols-1 gap-10">
+        <RepoSkeleton />
+        <RepoSkeleton />
+        <RepoSkeleton />
+        <RepoSkeleton />
+        <RepoSkeleton />
+        <RepoSkeleton />
+      </div>
+      </div>
+    );
   }
 
   return (
