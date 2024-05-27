@@ -24,7 +24,7 @@ export function ContactForm() {
   const [messageValid, setMessageValid] = useState<boolean>(true);
   const [messageError, setMessageError] = useState<string>("");
   const [showConfetti, setShowConfetti] = useState<boolean>(false);
-  const [modalOpen, setModalOpen] = useState<boolean>(true);
+  const [modalOpen, setModalOpen] = useState<boolean>(false);
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const nameRegex = /^[A-Za-z]+$/;
