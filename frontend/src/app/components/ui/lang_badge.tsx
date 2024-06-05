@@ -43,38 +43,48 @@ const LanguageBadge: React.FC<LanguageBadgeProps> = ({
     setError(true);
   };
 
+  // Split languages into groups of 3
+  const groupedLanguages = [];
+  for (let i = 0; i < languages.length; i += 3) {
+    groupedLanguages.push(languages.slice(i, i + 3));
+  }
+
   return (
-    <div className="flex gap-2 md:flex-row flex-col">
-      {languages.map((lang, index) => {
-        const langAttributes = getLangAttributes(lang);
-        return langAttributes ? (
-          <motion.div 
-            key={index}
-            className="flex w-fit p-1 pr-3 rounded gap-3"
-            style={{
-              backgroundColor: `#${langAttributes?.color}`,
-              color: `#${getIconColor(langAttributes?.color)}`,
-            }}
-            whileHover={{ scale: 1.05, rotateZ: 2 }}
-          >
-            {!error ? (
-              <Image
-                height="20"
-                width="20"
-                alt="l"
-                className="ml-3"
-                src={`https://cdn.simpleicons.org/${
-                  langAttributes.icon
-                }/${getIconColor(langAttributes?.color)}`}
-                onError={handleImageError}
-              />
-            ) : (
-              <div>Error loading image</div>
-            )}
-            {langAttributes.name}
-          </motion.div>
-        ) : null;
-      })}
+    <div>
+      {groupedLanguages.map((group, groupIndex) => (
+        <div key={groupIndex} className="flex gap-2 md:flex-row flex-col mt-2">
+          {group.map((lang, index) => {
+            const langAttributes = getLangAttributes(lang);
+            return langAttributes ? (
+              <motion.div 
+                key={index}
+                className="flex w-fit p-1 pr-3 rounded gap-3"
+                style={{
+                  backgroundColor: `#${langAttributes?.color}`,
+                  color: `#${getIconColor(langAttributes?.color)}`,
+                }}
+                whileHover={{ scale: 1.05, rotateZ: 2 }}
+              >
+                {!error ? (
+                  <Image
+                    height="20"
+                    width="20"
+                    alt="l"
+                    className="ml-3"
+                    src={`https://cdn.simpleicons.org/${
+                      langAttributes.icon
+                    }/${getIconColor(langAttributes?.color)}`}
+                    onError={handleImageError}
+                  />
+                ) : (
+                  <div>Error loading image</div>
+                )}
+                {langAttributes.name}
+              </motion.div>
+            ) : null;
+          })}
+        </div>
+      ))}
     </div>
   );
 };

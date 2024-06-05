@@ -25,6 +25,7 @@ export const badgeConfigs: BadgeConfigs = {
     coffeescript: { name: 'CoffeeScript', color: '2F2625', icon: 'coffeescript' },
     crystal: { name: 'crystal', color: '000000', icon: 'crystal' },
     css: { name: 'CSS', color: '563D7C', icon: 'css3' },
+    scss: { name: 'CSS', color: '563D7C', icon: 'css3' },
     config: { name: 'Config', color: 'EF1970', icon: 'haveibeenpwned' },
     d3: { name: 'D3.js', color: 'F9A03C', icon: 'd3dotjs' },
     dart: { name: 'Dart', color: '0175C2', icon: 'dart' },
