@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://jacobdrizzle.dev
+Host: https://www.jacobdrizzle.dev/
 
 # Sitemaps
-Sitemap: https://jacobdrizzle.dev/sitemap.xml
+Sitemap: https://www.jacobdrizzle.dev/sitemap.xml
