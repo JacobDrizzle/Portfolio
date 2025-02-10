@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Code, Github, Brain, Cpu, Terminal, Coffee, Laptop } from 'lucide-react';
+import { Code, Github, Brain, Cpu, Terminal } from 'lucide-react';
 import Link from 'next/link';
 
 export default function About() {
@@ -164,7 +164,7 @@ export default function About() {
                 whileHover={{ scale: 1.05 }}
                 className="bg-green-500/20 px-8 py-3 rounded-md border border-green-500 hover:bg-green-500/30 transition-colors font-mono"
               >
-                Let's Connect
+                Let&apos;s Connect
               </motion.button>
             </Link>
           </motion.div>

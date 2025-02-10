@@ -24,15 +24,15 @@ export const metadata: Metadata = {
   referrer: "origin-when-cross-origin",
   keywords: ["software developer", "full-stack", "web development", "React", "Next.js", "TypeScript", "portfolio"],
   authors: [{ name: "Jacob Dorrill" }],
-  creator: "DrDrizzles",
-  publisher: "DrDrizzles",
+  creator: "DrDrizzle",
+  publisher: "DrDrizzle",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
   openGraph: {
-    title: "DrDrizzles | Software Developer Portfolio",
+    title: "DrDrizzle | Software Developer Portfolio",
     description: "Full-stack software developer specializing in modern web technologies, AI and Blockchain. Check out my projects, technical blog, and development experience.",
     url: "https://your-portfolio-url.com",
     siteName: "DrDrizzles Portfolio",
