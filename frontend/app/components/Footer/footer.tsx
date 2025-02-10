@@ -11,11 +11,11 @@ export default function Footer() {
         <div className="flex mx-auto pt-4">
           <Link
             href="https://twitter.com/Jacob_Drizzle"
-            className="mx-2 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+            className="mx-2 transition-colors duration-300 text-gray-600 dark:text-green-400 hover:text-blue-500 dark:hover:text-green-500"
             aria-label="Twitter"
           >
             <svg
-              className="w-5 h-5 fill-current text-gray-600 dark:text-green-400"
+              className="w-5 h-5 fill-current"
               viewBox="0 0 16 16"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -26,11 +26,11 @@ export default function Footer() {
 
           <Link
             href="https://www.linkedin.com/in/jacob-dorrill/"
-            className="mx-2 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+            className="mx-2 text-gray-600 transition-colors duration-300 text-gray-600 dark:text-green-400 hover:text-blue-500 dark:hover:text-green-500"
             aria-label="LinkedIn"
           >
             <svg
-              className="w-5 h-5 fill-current text-gray-600 dark:text-green-400"
+              className="w-5 h-5 fill-current"
               viewBox="0 0 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
@@ -42,11 +42,11 @@ export default function Footer() {
           <Link
             href="https://github.com/JacobDrizzle"
             target="_blank"
-            className="mx-1 text-gray-600 transition-colors duration-300 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+            className="mx-1 text-gray-600 transition-colors duration-300 text-gray-600 dark:text-green-400 hover:text-blue-500 dark:hover:text-green-500"
             aria-label="Github"
           >
             <svg
-              className="w-7 h-7 fill-current text-gray-600 dark:text-green-400 transition-colors duration-300 hover:text-blue-500 dark:hover:text-blue-400"
+              className="w-7 h-7 fill-current"
               viewBox="0 3 24 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"

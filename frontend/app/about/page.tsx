@@ -1,7 +1,8 @@
 "use client";
 
 import { motion } from 'framer-motion';
-import { Code, Github, Brain, Rocket, Heart, Terminal, Coffee, Laptop } from 'lucide-react';
+import { Code, Github, Brain, Cpu, Terminal, Coffee, Laptop } from 'lucide-react';
+import Link from 'next/link';
 
 export default function About() {
   const containerVariants = {
@@ -19,12 +20,64 @@ export default function About() {
     visible: { opacity: 1, y: 0 }
   };
 
-  const skills = [
-    { name: "Frontend", items: ["React", "TypeScript", "Next.js", "Tailwind CSS"] },
-    { name: "Backend", items: ["Node.js", "Python", "RESTful APIs", "GraphQL"] },
-    { name: "Tools", items: ["Git", "Docker", "VS Codium", "Linux", "Anchor"] },
-    { name: "Blockchain", items: ["Solidity", "Web3.js", "Smart Contracts", "DeFi", "Rust"] },
+  const passionAreas = [
+    {
+      icon: Brain,
+      title: "Artificial Intelligence",
+      description: "Diving deep into AI technology and its real-world applications. From writing Python scripts for data analysis to exploring neural networks and machine learning models. Currently focusing on integrating AI solutions into practical applications and studying advanced AI concepts."
+    },
+    {
+      icon: Code,
+      title: "Blockchain Development",
+      description: "My tech journey began with cryptocurrency trading automation, which sparked my passion for blockchain. Experienced in developing smart contracts and DeFi applications. Particularly interested in creating decentralized systems that can make a real impact on financial accessibility."
+    },
+    {
+      icon: Cpu,
+      title: "Robotics",
+      description: "Combining my love for software with hardware integration. Experienced in working with various microcontrollers and sensors. Currently exploring ROS (Robot Operating System) and developing autonomous systems that can interact with their environment intelligently."
+    },
+    {
+      icon: Github,
+      title: "Software Engineering",
+      description: "Currently pursuing a Bachelor's in Software Engineering, building a strong foundation in computer science principles. Proficient in multiple programming paradigms and languages. Passionate about clean code, software architecture, and developing scalable solutions."
+    }
   ];
+
+  const journeyCards = [
+    {
+      title: "Educational Journey",
+      description: "Started with self-learning programming through online resources. Completed QQI Level 6 in Advanced Software Development with distinction. Currently excelling in the second year of my Bachelor's degree in Software Engineering, focusing on advanced algorithms and system design."
+    },
+    {
+      title: "Technical Expertise",
+      description: "Full-stack development with modern technologies. Proficient in JavaScript/TypeScript ecosystem for web development, Python for AI/ML, Rust for systems programming, C++ for robotics, and Golang for backend services. Experienced with SQL databases, RESTful APIs, and cloud platforms."
+    },
+    {
+      title: "Professional Goals",
+      description: "Actively seeking opportunities in blockchain, AI, or robotics sectors. Started my journey with crypto trading automation and expanded into full-stack development. Looking to contribute to innovative projects that push the boundaries of technology."
+    }
+  ];
+
+ // Previous imports and code remain the same...
+
+ const skills = [
+  { 
+    category: "Languages",
+    items: ["JavaScript", "TypeScript", "Python", "Java", "C++", "Rust", "C", "Golang"]
+  },
+  {
+    category: "Web Technologies",
+    items: ["React", "Next.js", "Node.js", "GraphQL", "REST APIs", "Tailwind CSS", "Vue.js", "Express.js"]
+  },
+  {
+    category: "AI & Data",
+    items: ["TensorFlow", "PyTorch", "Scikit-learn", "Pandas", "SQL", "MongoDB", "Redis", "PostgreSQL"]
+  },
+  {
+    category: "Tools & Platforms",
+    items: ["Git", "Docker", "Linux", "AWS", "Kubernetes", "CI/CD", "Jenkins", "GitHub Actions"]
+  }
+];
 
   return (
     <div className="min-h-screen bg-white dark:bg-black text-black dark:text-green-400">
@@ -40,103 +93,80 @@ export default function About() {
             <h1 className="text-4xl font-bold text-green-600 dark:text-green-400 mb-6">
               About Me
             </h1>
-            <div className="max-w-2xl mx-auto">
+            <div className="max-w-3xl mx-auto">
               <p className="text-xl text-green-700/80 dark:text-green-500/80 mb-4">
-                Passionate developer on a journey to create innovative solutions through code
+                Aspiring Software Engineer with a passion for AI, Blockchain, and Robotics. 
+                Building innovative solutions at the intersection of cutting-edge technologies.
               </p>
               <div className="flex justify-center space-x-4">
-                <Coffee className="w-6 h-6 text-green-500" />
+                <Brain className="w-6 h-6 text-green-500" />
                 <Terminal className="w-6 h-6 text-green-500" />
-                <Heart className="w-6 h-6 text-green-500" />
+                <Code className="w-6 h-6 text-green-500" />
               </div>
             </div>
           </motion.div>
 
           {/* Journey Section */}
-          <motion.div variants={itemVariants} className="grid md:grid-cols-2 gap-12">
-            <div>
-              <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                <Laptop className="w-6 h-6 text-green-500" />
-                My Journey
-              </h2>
-              <div className="space-y-4 text-green-700/80 dark:text-green-500/80">
-                <p>
-                  My programming journey began 4 years ago with a simple curiosity about how websites work. 
-                  That curiosity quickly evolved into a passion for creating elegant solutions to complex problems.
-                </p>
-                <p>
-                  While I&apos;m yet to land my first professional role, I&apos;ve dedicated myself to continuous learning 
-                  and building practical projects that solve real-world problems. Through self-study and hands-on 
-                  experience, I&apos;ve developed a strong foundation in modern programming practices
-                </p>
-                <p>
-                  I&apos;m particularly fascinated by the intersection of blockchain, AI, and space technology, 
-                  believing these fields will shape our future in profound ways.
-                </p>
-              </div>
-            </div>
-            
-            <div>
-              <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2">
-                <Code className="w-6 h-6 text-green-500" />
-                Technical Skills
-              </h2>
-              <div className="grid lg:grid-cols-2 md:grid-cols-1 gap-4">
-                {skills.map((category) => (
-                  <div key={category.name} className="bg-green-500/10 p-4 rounded-lg">
-                    <h3 className="font-semibold mb-2">{category.name}</h3>
-                    <ul className="text-green-700/80 dark:text-green-500/80">
-                      {category.items.map((item) => (
-                        <li key={item} className="mb-1">• {item}</li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-              </div>
+          <motion.div variants={itemVariants}>
+            <h2 className="text-2xl font-semibold mb-6">My Journey</h2>
+            <div className="grid md:grid-cols-3 gap-6">
+              {journeyCards.map((card) => (
+                <div key={card.title} className="bg-green-500/10 p-6 rounded-lg border border-green-500/20">
+                  <h3 className="text-xl font-semibold mb-2">{card.title}</h3>
+                  <p className="text-green-700/80 dark:text-green-500/80">
+                    {card.description}
+                  </p>
+                </div>
+              ))}
             </div>
           </motion.div>
 
-          {/* Interests Section */}
+          {/* Skills Grid */}
           <motion.div variants={itemVariants}>
-            <h2 className="text-2xl font-semibold mb-6">What Drives Me</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="bg-green-500/5 border border-green-500/30 p-6 rounded-lg">
-                <Github className="w-8 h-8 text-green-500 mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Open Source</h3>
-                <p className="text-green-700/80 dark:text-green-500/80">
-                  Contributing to open source projects and learning from the global developer community.
-                </p>
-              </div>
-              
-              <div className="bg-green-500/5 border border-green-500/30 p-6 rounded-lg">
-                <Brain className="w-8 h-8 text-green-500 mb-4" />
-                <h3 className="text-xl font-semibold mb-2">AI & Innovation</h3>
-                <p className="text-green-700/80 dark:text-green-500/80">
-                  Exploring the potential of AI to solve complex problems and create intelligent solutions.
-                </p>
-              </div>
-              
-              <div className="bg-green-500/5 border border-green-500/30 p-6 rounded-lg">
-                <Rocket className="w-8 h-8 text-green-500 mb-4" />
-                <h3 className="text-xl font-semibold mb-2">Space Tech</h3>
-                <p className="text-green-700/80 dark:text-green-500/80">
-                  Fascinated by space exploration and the technology that makes it possible.
-                </p>
-              </div>
+            <h2 className="text-2xl font-semibold mb-6">Technical Arsenal</h2>
+            <div className="grid md:grid-cols-4 gap-4">
+              {skills.map((category) => (
+                <div key={category.category} className="bg-green-500/5 p-4 rounded-lg border border-green-500/20">
+                  <h3 className="font-semibold mb-2">{category.category}</h3>
+                  <ul className="text-green-700/80 dark:text-green-500/80 text-sm">
+                    {category.items.map((item) => (
+                      <li key={item} className="mb-1">• {item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Passion Areas */}
+          <motion.div variants={itemVariants}>
+            <h2 className="text-2xl font-semibold mb-6">Areas of Expertise</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {passionAreas.map(({ icon: Icon, title, description }) => (
+                <div key={title} className="bg-green-500/5 border border-green-500/30 p-6 rounded-lg">
+                  <Icon className="w-8 h-8 text-green-500 mb-4" />
+                  <h3 className="text-xl font-semibold mb-2">{title}</h3>
+                  <p className="text-green-700/80 dark:text-green-500/80">
+                    {description}
+                  </p>
+                </div>
+              ))}
             </div>
           </motion.div>
 
           {/* Call to Action */}
           <motion.div variants={itemVariants} className="text-center">
             <p className="text-xl text-green-700/80 dark:text-green-500/80 mb-6">
-              Interested in collaborating or just want to connect?
+              Looking to collaborate on innovative projects in AI, Blockchain, or Robotics?
             </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              className="bg-green-500/20 px-8 py-3 rounded-md border border-green-500 hover:bg-green-500/30 transition-colors font-mono"
-            >
-              Get in Touch
-            </motion.button>
+            <Link href="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                className="bg-green-500/20 px-8 py-3 rounded-md border border-green-500 hover:bg-green-500/30 transition-colors font-mono"
+              >
+                Let's Connect
+              </motion.button>
+            </Link>
           </motion.div>
         </motion.div>
       </main>
