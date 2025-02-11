@@ -76,7 +76,7 @@ export default function Home() {
               <h1 className="lg:text-5xl text-2xl font-bold text-green-600 dark:text-green-400 mb-6">
                 Hi, I&apos;m{" "}
                 <span className="text-green-700 dark:text-green-500">
-                  {"DrDrizzles"}
+                  {"{Jacob Dorrill}"}
                 </span>
               </h1>
               <div className="border-l-4 border-green-500 pl-4 mb-8">
