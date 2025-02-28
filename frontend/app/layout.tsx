@@ -5,6 +5,7 @@ import { ThemeProvider } from "next-themes";
 import Navbar from "./components/Navbar";
 import MatrixBackground from "./components/MatrixBackground";
 import Footer from "./components/Footer/footer";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -70,6 +71,7 @@ export default function RootLayout({
         <MatrixBackground />
         <Navbar />
           {children}
+          <Analytics />
           <Footer />
         </ThemeProvider>
       </body>
