@@ -94,7 +94,9 @@ export default function Home() {
               <ActionButton href="/projects" variant="filled">
                 View Projects
               </ActionButton>
-              <ActionButton href="/cv">
+              <ActionButton
+                href="/Jacob_Dorrill_CV.pdf"
+              >
                 Download CV
               </ActionButton>
             </motion.div>
