@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Navbar from "./components/Navbar";
 import MatrixBackground from "./components/MatrixBackground";
-import Footer from "./components/Footer/footer";
+import Footer from "./components/Footer/Footer";
 import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
@@ -67,7 +67,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white dark:bg-black`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
         <MatrixBackground />
         <Navbar />
           {children}

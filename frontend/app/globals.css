@@ -5,6 +5,22 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* Light theme - deeper, more readable greens */
+  --green-text-primary: #166534;
+  --green-text-secondary: #15803d;
+  --green-text-muted: #166534cc;
+  --green-accent: #22c55e;
+  --green-border: #22c55e40;
+  --green-bg-subtle: #22c55e0d;
+}
+
+.dark {
+  --green-text-primary: #4ade80;
+  --green-text-secondary: #86efac;
+  --green-text-muted: #22c55ecc;
+  --green-accent: #22c55e;
+  --green-border: #22c55e33;
+  --green-bg-subtle: #22c55e0d;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -24,8 +40,42 @@
   animation: blink-animation 1s steps(5, start) infinite;
 }
 
+/* Smooth transition for theme switching */
+* {
+  transition-property: background-color, border-color, color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 200ms;
+}
+
+/* Disable transition on motion-reduced preference */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition-duration: 0ms;
+  }
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom scrollbar for better aesthetics */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--green-accent);
+  border-radius: 4px;
+  opacity: 0.5;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--green-text-secondary);
 }
