@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Github, Code, Brain, Cpu } from "lucide-react";
-import { ActionButton, FeatureCard, JourneyCard } from "./components/ui/custom-components";
+import { ActionButton, FeatureCard, JourneyCard } from "@/components/ui/custom-components";
 
 // Enhanced animation variants with smoother easing
 const animations = {
