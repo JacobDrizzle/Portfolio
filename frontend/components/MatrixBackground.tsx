@@ -28,22 +28,20 @@ const matrixEffect = (canvas: HTMLCanvasElement) => {
 
   const draw = () => {
     frameCount++;
-    
-    // Only update on certain frames
+
     if (frameCount % frameDelay === 0) {
-      // Use a darker background for better visibility
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
+      const isDark = document.documentElement.classList.contains('dark');
+      ctx.fillStyle = isDark ? 'rgba(0, 0, 0, 0.1)' : 'rgba(255, 255, 255, 0.1)';
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-      // Brighter green for better contrast
-      ctx.fillStyle = '#00FF00';
+      ctx.fillStyle = isDark ? '#00FF00' : '#166534';
       ctx.font = `${fontSize}px monospace`;
 
       for (let i = 0; i < drops.length; i++) {
         const text = characters[Math.floor(Math.random() * characters.length)];
         const x = i * fontSize;
         const y = drops[i] * fontSize;
-        
+
         ctx.fillText(text, x, y);
 
         if (y > canvas.height && Math.random() > 0.975) {
@@ -97,7 +95,7 @@ export default function MatrixBackground() {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed top-0 left-0 w-full h-full opacity-15 pointer-events-none z-0"
+      className="fixed top-0 left-0 w-full h-full opacity-[0.07] pointer-events-none z-0"
     />
   );
 }

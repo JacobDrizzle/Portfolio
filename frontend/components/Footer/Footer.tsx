@@ -69,8 +69,9 @@ export default function Footer() {
               >
                 <motion.div
                   className="text-gray-600 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 transition-colors"
-                  whileHover={{ scale: 1.2, y: -3 }}
-                  whileTap={{ scale: 0.9 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  whileTap={{ scale: 0.96 }}
+                  transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
                 >
                   {link.icon}
                 </motion.div>

@@ -1,41 +1,41 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Github, Code, Brain, Cpu } from "lucide-react";
+import { Database, Bot, LineChart, ScanText } from "lucide-react";
 import { ActionButton, FeatureCard, JourneyCard } from "@/components/ui/custom-components";
 
-// Enhanced animation variants with smoother easing
+const EASE_OUT = [0.22, 1, 0.36, 1] as const;
+
 const animations = {
   container: {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.1
+        staggerChildren: 0.08,
+        delayChildren: 0.05
       }
     }
   },
   item: {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 16 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 12
+        duration: 0.4,
+        ease: EASE_OUT
       }
     }
   },
   fadeInUp: {
-    hidden: { opacity: 0, y: 40 },
+    hidden: { opacity: 0, y: 24 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6,
-        ease: [0.22, 1, 0.36, 1] as const
+        duration: 0.5,
+        ease: EASE_OUT
       }
     }
   }
@@ -44,39 +44,39 @@ const animations = {
 export default function Home() {
   const passionAreas = [
     {
-      icon: Brain,
-      title: "Artificial Intelligence",
-      description: "Passionate about AI technology and its applications. Started my journey with Python scripts and now exploring advanced AI integration possibilities."
+      icon: Database,
+      title: "RAG Pipelines",
+      description: "Embeddings, retrieval with confidence scoring, and citation surfacing. pgvector, LangChain, FastAPI — served as a REST API or embedded widget."
     },
     {
-      icon: Code,
-      title: "Blockchain Development",
-      description: "Began programming with cryptocurrency trading automation. Experienced in smart contracts and blockchain technologies with a focus on decentralized systems."
+      icon: Bot,
+      title: "AI Agents with Tool Access",
+      description: "Multi-agent orchestration via CrewAI. MCP servers connecting agents to SQL databases, internal APIs, and documentation repos — not toy prompt chains."
     },
     {
-      icon: Cpu,
-      title: "Robotics",
-      description: "Enthusiastic about robotics and automation. Combining software engineering knowledge with hardware integration for innovative solutions."
+      icon: LineChart,
+      title: "Predictive ML",
+      description: "Classification, regression, and anomaly detection with CatBoost, XGBoost, LightGBM, and ensembles. Benchmarked against a real baseline, not just cross-validated in a notebook."
     },
     {
-      icon: Github,
-      title: "Software Engineering",
-      description: "Pursuing a Bachelor's in Software Engineering. Experienced in multiple programming languages including JavaScript, TypeScript, Python, Java, C++, Rust, C, and Golang."
+      icon: ScanText,
+      title: "OCR & Document Extraction",
+      description: "Structured JSON extraction from scanned PDFs. Azure Document Intelligence or in-house GLM-OCR depending on cost and accuracy tradeoffs."
     }
   ];
 
   const journeyCards = [
     {
       title: "Education",
-      description: "QQI Level 6 in Advanced Software Development. Currently in second year of Bachelor's degree in Software Engineering."
+      description: "BSc Software Development, MTU Cork (completed). QQI Level 6 Advanced Software Development with distinction prior."
     },
     {
-      title: "Technical Skills",
-      description: "Proficient in JavaScript, TypeScript, Python, Java, C++, Rust, C, Golang, SQL. Experience in both front-end and back-end development."
+      title: "Current Role",
+      description: "Shipping ML features at CompuCal (Cork, Ireland) — RAG, OCR, predictive maintenance, and MCP-backed agents for a regulated calibration-management platform."
     },
     {
-      title: "Career Focus",
-      description: "Seeking opportunities in blockchain, AI, or robotics. Started with crypto trading automation and expanded into full-stack development."
+      title: "Focus",
+      description: "Production ML for small teams: retrieval systems, AI agents, and predictive modelling for tabular and document-heavy problems."
     }
   ];
 
@@ -105,26 +105,28 @@ export default function Home() {
                   transition={{ duration: 0.8, repeat: Infinity, repeatType: "reverse" }}
                 />
               </motion.div>
-              <h1 className="lg:text-5xl text-2xl font-bold text-gray-900 dark:text-green-400 mb-6">
-                Hi, I&apos;m{" "}
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-green-400 mb-6">
                 <motion.span
                   className="text-green-600 dark:text-green-500 inline-block"
-                  whileHover={{ scale: 1.05 }}
-                  transition={{ type: "spring", stiffness: 300 }}
+                  whileHover={{ scale: 1.03 }}
+                  transition={{ duration: 0.4, ease: EASE_OUT }}
                 >
                   {"{Jacob Dorrill}"}
                 </motion.span>
               </h1>
               <motion.div
-                className="border-l-4 border-green-500 pl-4 mb-8"
-                whileHover={{ borderLeftWidth: "6px", paddingLeft: "18px" }}
-                transition={{ duration: 0.2 }}
+                className="border-l-2 border-green-500 pl-4 mb-8"
+                whileHover={{ x: 4 }}
+                transition={{ duration: 0.4, ease: EASE_OUT }}
               >
                 <p className="text-xl text-gray-700 dark:text-green-300">
-                  Software Engineering Student | Full-Stack Developer
+                  ML Engineer — RAG Systems, AI Agents, and Predictive Models
                 </p>
-                <p className="text-lg text-gray-500 dark:text-green-500/80 mt-2">
-                  From crypto trading scripts to full-stack applications
+                <p className="text-lg text-gray-700 dark:text-green-500/80 mt-2 leading-relaxed max-w-2xl">
+                  I build production ML systems — RAG pipelines with pgvector, AI agents wired to
+                  real databases via MCP, gradient-boosting predictive models, and OCR extraction
+                  pipelines. Currently shipping ML features at CompuCal (Cork, Ireland) for a
+                  regulated calibration-management platform.
                 </p>
               </motion.div>
             </motion.div>
@@ -134,8 +136,8 @@ export default function Home() {
               variants={animations.item}
               className="flex space-x-4 pt-6"
             >
-              <ActionButton href="/projects" variant="filled">
-                View Projects
+              <ActionButton href="/ml" variant="filled">
+                See ML Work
               </ActionButton>
               <ActionButton
                 href="/Jacob_Dorrill_CV.pdf"
@@ -187,21 +189,21 @@ export default function Home() {
             className="border-t border-green-300 dark:border-green-500/30 pt-8"
           >
             <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-green-400">My Journey</h2>
-            <p className="text-gray-600 dark:text-green-500/80 mb-6 leading-relaxed">
-              My programming journey began in early 2021 with Python scripts for cryptocurrency trading.
-              Over the past 4 years, I&apos;ve expanded my expertise across multiple programming languages
-              and technologies. Currently pursuing a Bachelor&apos;s in Software Engineering, I combine
-              academic knowledge with practical project experience, focusing on emerging technologies
-              in blockchain, AI, and robotics.
+            <p className="text-gray-700 dark:text-green-500/80 mb-6 leading-relaxed">
+              I started with Python scripts in early 2021 — automating crypto trades was the
+              excuse to learn the language. Five years on, the work has settled: production ML
+              for small teams. RAG systems, AI agents with real tool access, and predictive
+              models for tabular and document-heavy problems. Currently shipping ML features at
+              CompuCal, BSc at MTU Cork just wrapped.
             </p>
             <div className="grid md:grid-cols-3 gap-4 text-sm">
               {journeyCards.map((card, index) => (
                 <motion.div
                   key={index}
-                  initial={{ opacity: 0, y: 20 }}
+                  initial={{ opacity: 0, y: 16 }}
                   whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.5 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ delay: index * 0.08, duration: 0.55, ease: EASE_OUT }}
                 >
                   <JourneyCard {...card} />
                 </motion.div>

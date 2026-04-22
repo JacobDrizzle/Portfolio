@@ -44,6 +44,7 @@ export default function Navbar() {
   }, []);
 
   const menuItems = [
+    { href: '/ml', label: '/ml' },
     { href: '/projects', label: '/projects' },
     { href: '/about', label: '/about' },
     { href: '/contact', label: '/contact' },
@@ -76,8 +77,9 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           {/* Logo */}
           <motion.div
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
           >
             <Link
               href="/"
@@ -102,8 +104,8 @@ export default function Navbar() {
                   }`}
                 >
                   <motion.span
-                    whileHover={{ y: -2 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    whileHover={{ y: -1 }}
+                    transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
                     className="inline-block"
                   >
                     {item.label}
@@ -125,8 +127,9 @@ export default function Navbar() {
             onClick={() => setIsOpen(!isOpen)}
             className="md:hidden text-green-600 dark:text-green-400 hover:text-green-500 dark:hover:text-green-300 transition-colors"
             aria-label="Toggle menu"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.96 }}
+            transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
           >
             {isOpen ? <X className="h-6 w-6 opacity-0" /> : <Menu className="h-6 w-6" />}
           </motion.button>
@@ -149,8 +152,9 @@ export default function Navbar() {
                 onClick={() => setIsOpen(false)}
                 className="absolute top-3 right-3 text-gray-700 dark:text-green-400 hover:text-green-500 dark:hover:text-green-300 transition-colors"
                 aria-label="Close menu"
-                whileHover={{ scale: 1.1, rotate: 90 }}
-                whileTap={{ scale: 0.9 }}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.96 }}
+                transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
               >
                 <X className="h-6 w-6" />
               </motion.button>
@@ -168,8 +172,8 @@ export default function Navbar() {
                     }`}
                   >
                     <motion.span
-                      whileHover={{ x: 5 }}
-                      transition={{ type: "spring", stiffness: 300 }}
+                      whileHover={{ x: 3 }}
+                      transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
                       className="inline-block"
                     >
                       {item.label}

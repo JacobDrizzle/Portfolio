@@ -47,26 +47,28 @@ export default function Contact() {
     }
   };
 
+  const EASE_OUT = [0.22, 1, 0.36, 1] as const;
+  const EASE_IN_OUT = [0.4, 0, 0.2, 1] as const;
+
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.1
+        staggerChildren: 0.08,
+        delayChildren: 0.05
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 16 },
     visible: {
       opacity: 1,
       y: 0,
       transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 12
+        duration: 0.4,
+        ease: EASE_OUT
       }
     }
   };
@@ -82,10 +84,10 @@ export default function Contact() {
         >
           {/* Header */}
           <motion.div variants={itemVariants} className="text-center mb-12">
-            <h1 className="text-4xl font-bold text-gray-900 dark:text-green-400 mb-4">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-green-400 mb-4">
               Get in Touch
             </h1>
-            <p className="text-xl text-gray-600 dark:text-green-500/80">
+            <p className="text-xl text-gray-700 dark:text-green-500/80">
               Let&apos;s collaborate on something amazing
             </p>
           </motion.div>
@@ -96,8 +98,8 @@ export default function Contact() {
               <div>
                 <h2 className="text-2xl font-semibold mb-6 flex items-center gap-2 text-gray-900 dark:text-green-400">
                   <motion.div
-                    whileHover={{ rotate: 15, scale: 1.1 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    whileHover={{ y: -1, scale: 1.05 }}
+                    transition={{ duration: 0.15, ease: EASE_IN_OUT }}
                   >
                     <MessageSquare className="w-6 h-6 text-green-600 dark:text-green-500" />
                   </motion.div>
@@ -105,17 +107,17 @@ export default function Contact() {
                 </h2>
                 <div className="space-y-4">
                   <motion.p
-                    className="flex items-center gap-3 text-gray-600 dark:text-green-500/80"
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    className="flex items-center gap-3 text-gray-700 dark:text-green-500/80"
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.15, ease: EASE_IN_OUT }}
                   >
                     <Mail className="w-5 h-5 text-green-600 dark:text-green-500" />
                     jd_git@protonmail.com
                   </motion.p>
                   <motion.p
-                    className="flex items-center gap-3 text-gray-600 dark:text-green-500/80"
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    className="flex items-center gap-3 text-gray-700 dark:text-green-500/80"
+                    whileHover={{ x: 3 }}
+                    transition={{ duration: 0.15, ease: EASE_IN_OUT }}
                   >
                     <MapPin className="w-5 h-5 text-green-600 dark:text-green-500" />
                     Kenmare Co.Kerry
@@ -137,11 +139,11 @@ export default function Contact() {
                       href={href}
                       target="_blank"
                       className="text-green-600 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400 transition-colors"
-                      whileHover={{ scale: 1.2, rotate: 5 }}
-                      whileTap={{ scale: 0.9 }}
-                      initial={{ opacity: 0, y: 10 }}
+                      whileHover={{ y: -2, scale: 1.05 }}
+                      whileTap={{ scale: 0.96 }}
+                      initial={{ opacity: 0, y: 8 }}
                       animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: index * 0.1 }}
+                      transition={{ delay: index * 0.06, duration: 0.3, ease: EASE_OUT }}
                     >
                       <Icon className="w-6 h-6" />
                     </motion.a>
@@ -151,11 +153,11 @@ export default function Contact() {
 
               <motion.div
                 className="bg-green-50 dark:bg-green-500/5 border border-green-200 dark:border-green-500/30 p-6 rounded-lg hover:border-green-400 dark:hover:border-green-500/50 transition-all hover:shadow-lg hover:shadow-green-500/10"
-                whileHover={{ y: -4, scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                whileHover={{ y: -3, scale: 1.01 }}
+                transition={{ duration: 0.25, ease: EASE_IN_OUT }}
               >
                 <h3 className="font-semibold mb-2 text-gray-900 dark:text-green-400">Open for Opportunities</h3>
-                <p className="text-gray-600 dark:text-green-500/80 leading-relaxed">
+                <p className="text-gray-700 dark:text-green-500/80 leading-relaxed">
                   Currently seeking my first developer role. Let&apos;s discuss how I can contribute to your team!
                 </p>
               </motion.div>
@@ -242,7 +244,7 @@ export default function Contact() {
                   disabled={submitting}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                  transition={{ duration: 0.15, ease: EASE_IN_OUT }}
                   className="w-full bg-green-600 dark:bg-green-500/20 px-6 py-3 rounded-md border border-green-600 dark:border-green-500 text-white dark:text-green-400 hover:bg-green-700 dark:hover:bg-green-500/30 transition-colors font-mono flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {submitting ? (

@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Github, Star, GitFork, Clock, Link as LinkIcon } from 'lucide-react';
+import { ML_PROJECTS, isMLRepo } from '@/lib/featured-repos';
 
 interface Repository {
   id: number;
@@ -16,25 +17,65 @@ interface Repository {
   language: string;
 }
 
+// Hardcoded fallback surfaced when the GitHub API fails or returns nothing —
+// mirrors the /ml "Recent work" list so the page never appears broken.
+const FALLBACK_REPOS: Repository[] = ML_PROJECTS.map((project, idx) => ({
+  id: -1 - idx,
+  name: project.repoName ?? project.title,
+  description: project.summary,
+  html_url: project.url,
+  stargazers_count: 0,
+  forks_count: 0,
+  updated_at: new Date().toISOString(),
+  topics: project.stack.map((s) => s.toLowerCase()),
+  language: project.stack[0] ?? 'Python',
+}));
+
 export default function Projects() {
   const [repos, setRepos] = useState<Repository[]>([]);
   const [loading, setLoading] = useState(true);
   const [filter, setFilter] = useState('all');
+  const [isFallback, setIsFallback] = useState(false);
 
   useEffect(() => {
+    const controller = new AbortController();
+    // Guard against the GitHub API hanging — after 8s we flip to the fallback
+    // so visitors never see an indefinite "Loading repositories..." state.
+    let timedOut = false;
+    const timeout = setTimeout(() => {
+      timedOut = true;
+      controller.abort('timeout');
+    }, 8000);
+
     const fetchRepos = async () => {
       try {
-        const response = await fetch('https://api.github.com/users/JacobDrizzle/repos?sort=updated');
-        const data = await response.json();
+        const response = await fetch(
+          'https://api.github.com/users/JacobDrizzle/repos?sort=updated&per_page=100',
+          { signal: controller.signal }
+        );
+        if (!response.ok) throw new Error(`GitHub API ${response.status}`);
+        const data: Repository[] = await response.json();
+        if (!Array.isArray(data) || data.length === 0) throw new Error('No repos returned');
+        clearTimeout(timeout);
         setRepos(data);
+        setLoading(false);
       } catch (error) {
-        console.error('Error fetching repos:', error);
-      } finally {
+        clearTimeout(timeout);
+        // StrictMode double-mount / route change aborts the request — leave state untouched so
+        // the remount's fetch owns the UI. Check the signal directly (reason may be a string).
+        if (controller.signal.aborted && !timedOut) return;
+        console.error('Error fetching repos, using fallback:', error);
+        setRepos(FALLBACK_REPOS);
+        setIsFallback(true);
         setLoading(false);
       }
     };
 
     fetchRepos();
+    return () => {
+      clearTimeout(timeout);
+      controller.abort('unmount');
+    };
   }, []);
 
   const formatDate = (dateString: string) => {
@@ -57,29 +98,34 @@ export default function Projects() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.95 },
+    hidden: { opacity: 0, y: 16 },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: {
-        type: "spring" as const,
-        stiffness: 100,
-        damping: 12
+        duration: 0.4,
+        ease: [0.22, 1, 0.36, 1] as const
       }
     }
   };
 
   const cardHover = {
-    y: -8,
-    scale: 1.02,
-    transition: { type: "spring" as const, stiffness: 300, damping: 20 }
+    y: -3,
+    scale: 1.01,
+    transition: { duration: 0.25, ease: [0.4, 0, 0.2, 1] as const }
   };
 
   // Get unique languages for filter
   const languages = ['all', ...new Set(repos.map(repo => repo.language).filter(Boolean))];
 
-  const filteredRepos = repos.filter(repo => 
+  // ML/AI projects first; within each group keep the API's ordering (updated desc).
+  const sortedRepos = [...repos].sort((a, b) => {
+    const aML = isMLRepo(a) ? 0 : 1;
+    const bML = isMLRepo(b) ? 0 : 1;
+    return aML - bML;
+  });
+
+  const filteredRepos = sortedRepos.filter(repo =>
     filter === 'all' ? true : repo.language === filter
   );
 
@@ -93,19 +139,24 @@ export default function Projects() {
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-12"
         >
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-green-400 mb-4">
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-green-400 mb-4">
             <motion.span
               className="inline-block"
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
+              whileHover={{ y: -1, scale: 1.05 }}
+              transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
             >
               <Github className="inline-block mr-3 mb-1" />
             </motion.span>
             My Projects
           </h1>
-          <p className="text-xl text-gray-600 dark:text-green-500/80">
-            Exploring innovation through code
+          <p className="text-xl text-gray-700 dark:text-green-500/80">
+            ML-first work up top — RAG, agents, and predictive models.
           </p>
+          {isFallback && (
+            <p className="mt-3 text-sm text-green-600 dark:text-green-500/70 font-mono">
+              GitHub API unavailable — showing featured projects.
+            </p>
+          )}
         </motion.div>
 
         {/* Language Filter */}
@@ -119,11 +170,11 @@ export default function Projects() {
             <motion.button
               key={lang}
               onClick={() => setFilter(lang)}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: index * 0.05 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: index * 0.04, duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               className={`px-4 py-2 rounded-full text-sm font-mono transition-all duration-200
                 ${filter === lang
                   ? 'bg-green-600 dark:bg-green-500 text-white dark:text-black shadow-lg shadow-green-500/30'
@@ -168,14 +219,15 @@ export default function Projects() {
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-green-600 dark:text-green-500 hover:text-green-500 dark:hover:text-green-400"
-                    whileHover={{ scale: 1.2, rotate: 15 }}
-                    whileTap={{ scale: 0.9 }}
+                    whileHover={{ y: -1, scale: 1.05 }}
+                    whileTap={{ scale: 0.96 }}
+                    transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
                   >
                     <LinkIcon className="w-5 h-5" />
                   </motion.a>
                 </div>
 
-                <p className="text-gray-600 dark:text-green-500/80 mb-4 h-30 overflow-hidden leading-relaxed">
+                <p className="text-gray-700 dark:text-green-500/80 mb-4 h-30 overflow-hidden leading-relaxed">
                   {repo.description || 'No description provided'}
                 </p>
 
@@ -183,10 +235,9 @@ export default function Projects() {
                   {repo.topics.map((topic, index) => (
                     <motion.span
                       key={topic}
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: index * 0.05 }}
-                      whileHover={{ scale: 1.1 }}
+                      initial={{ opacity: 0, y: 4 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: index * 0.03, duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
                       className="text-xs px-2 py-1 rounded-full bg-green-100 dark:bg-green-500/20 text-green-700 dark:text-green-300 cursor-default"
                     >
                       {topic}
@@ -196,22 +247,16 @@ export default function Projects() {
 
                 <div className="flex items-center justify-between text-sm text-green-700 dark:text-green-500">
                   <div className="flex items-center gap-4">
-                    <motion.span
-                      className="flex items-center gap-1"
-                      whileHover={{ scale: 1.1 }}
-                    >
+                    <span className="flex items-center gap-1">
                       <Star className="w-4 h-4" />
                       {repo.stargazers_count}
-                    </motion.span>
-                    <motion.span
-                      className="flex items-center gap-1"
-                      whileHover={{ scale: 1.1 }}
-                    >
+                    </span>
+                    <span className="flex items-center gap-1">
                       <GitFork className="w-4 h-4" />
                       {repo.forks_count}
-                    </motion.span>
+                    </span>
                   </div>
-                  <span className="flex items-center gap-1 text-gray-500 dark:text-green-500/70">
+                  <span className="flex items-center gap-1 text-gray-600 dark:text-green-500/70">
                     <Clock className="w-4 h-4" />
                     {formatDate(repo.updated_at)}
                   </span>
