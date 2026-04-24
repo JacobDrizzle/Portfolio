@@ -285,7 +285,7 @@ export default function MLPageContent() {
                   href="mailto:jacobdorrill@gmail.com"
                   className="text-lg text-gray-700 dark:text-green-300 hover:text-green-600 dark:hover:text-green-400 transition-colors font-mono"
                 >
-                  jacobdorrill@gmail.com
+                  jd_git@protonmail.com
                 </a>
               </div>
               <div className="flex flex-wrap gap-4">
