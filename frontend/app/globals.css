@@ -47,6 +47,57 @@
   transition-duration: 200ms;
 }
 
+.motion-lift,
+.motion-shift,
+.motion-icon,
+.motion-button,
+.motion-link {
+  transition-property: transform, background-color, border-color, color, box-shadow;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.motion-lift {
+  transition-duration: 250ms;
+}
+
+.motion-lift:hover {
+  transform: translateY(-3px) scale(1.01);
+}
+
+.motion-shift {
+  transition-duration: 250ms;
+}
+
+.motion-shift:hover {
+  transform: translateX(4px);
+}
+
+.motion-icon,
+.motion-button,
+.motion-link {
+  transition-duration: 150ms;
+}
+
+.motion-icon {
+  display: inline-block;
+}
+
+.motion-icon:hover {
+  transform: translateY(-1px) scale(1.05);
+}
+
+.motion-button:hover {
+  transform: scale(1.02);
+}
+
+.motion-button:active {
+  transform: scale(0.98);
+}
+
+.motion-link:hover {
+  transform: translateX(3px);
+}
+
 /* Disable transition on motion-reduced preference */
 @media (prefers-reduced-motion: reduce) {
   *,
@@ -56,6 +107,15 @@
     animation-duration: 0ms !important;
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
+  }
+
+  .motion-lift:hover,
+  .motion-shift:hover,
+  .motion-icon:hover,
+  .motion-button:hover,
+  .motion-button:active,
+  .motion-link:hover {
+    transform: none !important;
   }
 }
 

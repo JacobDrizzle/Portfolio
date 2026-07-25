@@ -1,57 +1,147 @@
-import type { Variants } from "framer-motion";
+"use client";
 
-export const EASE_OUT = [0.22, 1, 0.36, 1] as const;
-export const EASE_IN_OUT = [0.4, 0, 0.2, 1] as const;
+import { useGSAP } from "@gsap/react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import type { RefObject } from "react";
 
-export const DUR_FAST = 0.15;
-export const DUR_BASE = 0.25;
-export const DUR_ENTER = 0.5;
+if (typeof window !== "undefined") {
+  gsap.registerPlugin(useGSAP, ScrollTrigger);
+}
 
-export const pageEnter = {
-  initial: { opacity: 0, y: 12 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: DUR_ENTER, ease: EASE_OUT },
-};
-
-export const sectionReveal = {
-  initial: { opacity: 0, y: 16 },
-  whileInView: { opacity: 1, y: 0 },
-  viewport: { once: true, margin: "-80px" },
-  transition: { duration: 0.4, ease: EASE_OUT },
-};
-
-export const staggerContainer: Variants = {
-  animate: {
-    transition: { staggerChildren: 0.08, delayChildren: 0.05 },
+export const MOTION = {
+  duration: {
+    fast: 0.15,
+    base: 0.25,
+    enter: 0.45,
   },
-};
-
-export const staggerItem: Variants = {
-  initial: { opacity: 0, y: 10 },
-  animate: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.35, ease: EASE_OUT },
+  ease: {
+    enter: "power3.out",
+    interface: "power2.out",
+    emphasized: "back.out(1.4)",
   },
+  stagger: {
+    intro: 0.08,
+    items: 0.07,
+  },
+} as const;
+
+const OWNED_INLINE_PROPS = "transform,opacity,visibility,willChange";
+
+type PageMotionOptions = {
+  dependencies?: unknown[];
 };
 
-export const cardHover = {
-  whileHover: { y: -3, scale: 1.01 },
-  transition: { duration: DUR_BASE, ease: EASE_IN_OUT },
+const clearAnimationStyles = (targets: Element[]) => {
+  if (targets.length > 0) {
+    gsap.set(targets, { clearProps: OWNED_INLINE_PROPS });
+  }
 };
 
-export const buttonHover = {
-  whileHover: { scale: 1.02 },
-  whileTap: { scale: 0.98 },
-  transition: { duration: DUR_FAST, ease: EASE_IN_OUT },
-};
+/**
+ * Runs a scoped page entrance and creates one-time ScrollTriggers for every
+ * `[data-animate="section"]` group. Children carrying `data-animate-item`
+ * stagger together; a section without marked children animates as one unit.
+ */
+export function usePageMotion(
+  scope: RefObject<HTMLElement | null>,
+  { dependencies = [] }: PageMotionOptions = {},
+) {
+  useGSAP(
+    () => {
+      const root = scope.current;
+      if (!root) return;
 
-export const iconHover = {
-  whileHover: { y: -1, scale: 1.05 },
-  transition: { duration: DUR_FAST, ease: EASE_IN_OUT },
-};
+      const introItems = Array.from(
+        root.querySelectorAll<HTMLElement>('[data-animate="intro"]'),
+      );
+      const sections = Array.from(
+        root.querySelectorAll<HTMLElement>('[data-animate="section"]'),
+      );
+      const sectionItems = sections.flatMap((section) => {
+        const items = Array.from(
+          section.querySelectorAll<HTMLElement>("[data-animate-item]"),
+        );
+        return items.length > 0 ? items : [section];
+      });
+      const allTargets = [...introItems, ...sectionItems];
+      const media = gsap.matchMedia();
 
-export const linkHover = {
-  whileHover: { x: 2 },
-  transition: { duration: DUR_FAST, ease: EASE_IN_OUT },
-};
+      media.add(
+        {
+          reduceMotion: "(prefers-reduced-motion: reduce)",
+          allowMotion: "(prefers-reduced-motion: no-preference)",
+        },
+        (context) => {
+          const { reduceMotion } = context.conditions as {
+            reduceMotion: boolean;
+            allowMotion: boolean;
+          };
+
+          if (reduceMotion) {
+            clearAnimationStyles(allTargets);
+            return;
+          }
+
+          if (introItems.length > 0) {
+            gsap.fromTo(
+              introItems,
+              {
+                autoAlpha: 0,
+                y: 16,
+                willChange: "transform,opacity",
+              },
+              {
+                autoAlpha: 1,
+                y: 0,
+                duration: MOTION.duration.enter,
+                ease: MOTION.ease.enter,
+                stagger: MOTION.stagger.intro,
+                onComplete: () => clearAnimationStyles(introItems),
+              },
+            );
+          }
+
+          sections.forEach((section) => {
+            const items = Array.from(
+              section.querySelectorAll<HTMLElement>("[data-animate-item]"),
+            );
+            const targets = items.length > 0 ? items : [section];
+
+            gsap.fromTo(
+              targets,
+              {
+                autoAlpha: 0,
+                y: 16,
+                willChange: "transform,opacity",
+              },
+              {
+                autoAlpha: 1,
+                y: 0,
+                duration: MOTION.duration.enter,
+                ease: MOTION.ease.enter,
+                stagger: MOTION.stagger.items,
+                onComplete: () => clearAnimationStyles(targets),
+                scrollTrigger: {
+                  trigger: section,
+                  start: "top 85%",
+                  once: true,
+                },
+              },
+            );
+          });
+        },
+        root,
+      );
+
+      return () => media.revert();
+    },
+    {
+      scope,
+      dependencies,
+      revertOnUpdate: dependencies.length > 0,
+    },
+  );
+}
+
+export { gsap, ScrollTrigger, useGSAP };

@@ -18,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 const siteDescription =
-  "ML engineer building production RAG systems, AI agents, and predictive models. Currently shipping ML features at CompuCal (Cork, Ireland).";
+  "ML engineer building production RAG systems, AI agents, and predictive models. Returning to MTU Cork to complete a Level 8 BSc (Hons) in Software Engineering.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.jacobdrizzle.dev"),
@@ -45,6 +45,10 @@ export const metadata: Metadata = {
     "OCR",
     "Python",
     "FastAPI",
+    "software engineering",
+    "BSc (Hons)",
+    "Level 8",
+    "MTU Cork",
     "Cork Ireland",
   ],
   authors: [{ name: "Jacob Dorrill" }],

@@ -1,9 +1,12 @@
 "use client";
 
+import { useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
+import { MOTION, gsap, useGSAP } from "@/lib/motion";
 
 export default function Footer() {
+  const footerRef = useRef<HTMLElement>(null);
+
   const socialLinks = [
     {
       href: "https://twitter.com/Jacob_Drizzle",
@@ -34,52 +37,110 @@ export default function Footer() {
     },
   ];
 
+  useGSAP(
+    () => {
+      const footer = footerRef.current;
+      if (!footer) return;
+
+      const rule = footer.querySelector<HTMLElement>("[data-footer-rule]");
+      const copy = footer.querySelector<HTMLElement>("[data-footer-copy]");
+      const links = Array.from(
+        footer.querySelectorAll<HTMLElement>("[data-footer-link]"),
+      );
+      if (!rule || !copy) return;
+
+      const media = gsap.matchMedia();
+      media.add(
+        {
+          reduceMotion: "(prefers-reduced-motion: reduce)",
+          allowMotion: "(prefers-reduced-motion: no-preference)",
+        },
+        (context) => {
+          const { reduceMotion } = context.conditions as {
+            reduceMotion: boolean;
+            allowMotion: boolean;
+          };
+          if (reduceMotion) {
+            gsap.set([rule, copy, ...links], {
+              clearProps: "transform,opacity,visibility,willChange",
+            });
+            return;
+          }
+
+          const timeline = gsap.timeline({
+            scrollTrigger: {
+              trigger: footer,
+              start: "top 90%",
+              once: true,
+            },
+            defaults: { ease: MOTION.ease.enter },
+          });
+
+          timeline
+            .fromTo(
+              rule,
+              { scaleX: 0, transformOrigin: "left center" },
+              { scaleX: 1, duration: 0.55 },
+            )
+            .fromTo(
+              copy,
+              { autoAlpha: 0, y: 8 },
+              { autoAlpha: 1, y: 0, duration: MOTION.duration.base },
+              "-=0.25",
+            )
+            .fromTo(
+              links,
+              { autoAlpha: 0, y: 10 },
+              {
+                autoAlpha: 1,
+                y: 0,
+                duration: MOTION.duration.base,
+                stagger: MOTION.stagger.items,
+                clearProps: "transform,opacity,visibility",
+              },
+              "-=0.12",
+            );
+        },
+        footer,
+      );
+
+      return () => media.revert();
+    },
+    { scope: footerRef },
+  );
+
   return (
-    <motion.div
+    <footer
+      ref={footerRef}
       className="container px-6 py-12 mx-auto bg-white dark:bg-black"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.5 }}
     >
-      <motion.hr
+      <hr
+        data-footer-rule
         className="my-6 border-gray-300 dark:border-gray-700 md:my-8"
-        initial={{ scaleX: 0 }}
-        whileInView={{ scaleX: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
       />
-      <p className="mt-4 text-sm text-gray-600 dark:text-green-400 sm:mt-0 text-center">
-        Jacob Drizzle © Copyright {new Date().getFullYear()}. All Rights Reserved.
+      <p
+        data-footer-copy
+        className="mt-4 text-sm text-gray-600 dark:text-green-400 sm:mt-0 text-center"
+      >
+        Jacob Drizzle &copy; Copyright {new Date().getFullYear()}. All Rights Reserved.
       </p>
       <div className="flex flex-col items-center sm:flex-row sm:justify-between">
         <div className="flex mx-auto pt-4 gap-4">
-          {socialLinks.map((link, index) => (
-            <motion.div
+          {socialLinks.map((link) => (
+            <Link
               key={link.label}
-              initial={{ opacity: 0, y: 10 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.3 }}
+              data-footer-link
+              href={link.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={link.label}
+              className="motion-icon text-gray-600 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300"
             >
-              <Link
-                href={link.href}
-                target="_blank"
-                aria-label={link.label}
-              >
-                <motion.div
-                  className="text-gray-600 dark:text-green-400 hover:text-green-600 dark:hover:text-green-300 transition-colors"
-                  whileHover={{ scale: 1.05, y: -2 }}
-                  whileTap={{ scale: 0.96 }}
-                  transition={{ duration: 0.15, ease: [0.4, 0, 0.2, 1] }}
-                >
-                  {link.icon}
-                </motion.div>
-              </Link>
-            </motion.div>
+              {link.icon}
+            </Link>
           ))}
         </div>
       </div>
-    </motion.div>
+    </footer>
   );
 }
