@@ -173,7 +173,7 @@ export default function Contact() {
                   Open for Opportunities
                 </h3>
                 <p className="text-gray-700 dark:text-green-500/80 leading-relaxed">
-                  Currently seeking my first developer role. Let&apos;s discuss how I can contribute to your team!
+                  I&apos;m currently open to work. Let&apos;s discuss how I can contribute to your team!
                 </p>
               </div>
             </section>
