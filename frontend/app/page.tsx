@@ -35,7 +35,7 @@ export default function Home() {
   const journeyCards = [
     {
       title: "Education",
-      description: "Returning to MTU Cork to complete a Level 8 BSc (Hons) in Software Engineering. QQI Level 6 Advanced Software Development with distinction prior."
+      description: "Returning to MTU Cork to complete a Level 8 BSc (Hons) in Software Engineering. QQI Level 6 Advanced Software Development with distinction prior. Joint Gold at the 9th ABC Challenge with MTU team Motion Pending."
     },
     {
       title: "Previous Experience",
