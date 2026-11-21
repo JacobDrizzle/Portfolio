@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { Database, Bot, LineChart, ScanText } from "lucide-react";
+import { ShieldCheck, Bot, Bug, LineChart } from "lucide-react";
 import { ActionButton, FeatureCard, JourneyCard } from "@/components/ui/custom-components";
 import { usePageMotion } from "@/lib/motion";
 
@@ -11,31 +11,31 @@ export default function Home() {
 
   const passionAreas = [
     {
-      icon: Database,
-      title: "RAG Pipelines",
-      description: "Embeddings, retrieval with confidence scoring, and citation surfacing. pgvector, LangChain, FastAPI, served as a REST API or embedded widget."
+      icon: ShieldCheck,
+      title: "AI Safety & Evaluation",
+      description: "My final-year project is in AI agent safety. I'm interested in how to evaluate agents and keep tool-using agents within the scope they were given."
     },
     {
       icon: Bot,
-      title: "AI Agents with Tool Access",
-      description: "Multi-agent orchestration via CrewAI. MCP servers connecting agents to SQL databases, internal APIs, and documentation repos, not toy prompt chains."
+      title: "AI Agents with Scoped Tool Access",
+      description: "MCP servers that gave internal agents real SQL and API access at CompuCal, plus multi-agent orchestration with CrewAI. The permissions, tools and evaluation are the hard part."
+    },
+    {
+      icon: Bug,
+      title: "Software Security",
+      description: "Memory-safety exploits and their defences: stack overflows and format-string bugs on 32-bit Linux, worked through in GDB, and the mitigations that stop them (ASLR, NX, stack canaries)."
     },
     {
       icon: LineChart,
-      title: "Predictive ML",
-      description: "Classification, regression, and anomaly detection with CatBoost, XGBoost, LightGBM, and ensembles. Benchmarked against a real baseline, not just cross-validated in a notebook."
-    },
-    {
-      icon: ScanText,
-      title: "OCR & Document Extraction",
-      description: "Structured JSON extraction from scanned PDFs. Azure Document Intelligence or in-house GLM-OCR depending on cost and accuracy tradeoffs."
+      title: "Production ML",
+      description: "RAG with pgvector and LangChain, CatBoost/XGBoost/LightGBM predictive models, OCR extraction, and the 7,552-parameter TCN that took joint gold at the 9th ABC Challenge."
     }
   ];
 
   const journeyCards = [
     {
       title: "Education",
-      description: "Returning to MTU Cork to complete a Level 8 BSc (Hons) in Software Engineering. QQI Level 6 Advanced Software Development with distinction prior. Joint Gold at the 9th ABC Challenge with MTU team Motion Pending."
+      description: "Final year of a BSc (Hons) in Software Development at MTU Cork, with a final-year project in AI agent safety. QQI Level 6 Advanced Software Development with distinction prior. Joint Gold at the 9th ABC Challenge with MTU team Motion Pending."
     },
     {
       title: "Previous Experience",
@@ -43,7 +43,7 @@ export default function Home() {
     },
     {
       title: "Focus",
-      description: "Production ML for small teams: retrieval systems, AI agents, and predictive modelling for tabular and document-heavy problems."
+      description: "AI safety, machine learning, software engineering and security. Looking for full-time roles where I can build ML systems and test how they behave."
     }
   ];
 
@@ -74,13 +74,13 @@ export default function Home() {
                 className="motion-shift border-l-2 border-green-500 pl-4 mb-8"
               >
                 <p className="text-xl text-gray-700 dark:text-green-300">
-                  ML Engineer, RAG Systems, AI Agents, and Predictive Models
+                  AI Safety &amp; ML Engineer
                 </p>
                 <p className="text-lg text-gray-700 dark:text-green-500/80 mt-2 leading-relaxed max-w-2xl">
-                  I build production ML systems, RAG pipelines with pgvector, AI agents wired to
-                  real databases via MCP, gradient-boosting predictive models, and OCR extraction
-                  pipelines. I previously shipped ML features at CompuCal (Cork, Ireland) and am
-                  returning to MTU Cork to complete a Level 8 BSc (Hons) in Software Engineering.
+                  I build machine-learning systems and test how they behave. I&apos;m in the final
+                  year of a BSc (Hons) in Software Development at MTU Cork, with a final-year
+                  project in AI agent safety. Before that I shipped RAG, OCR, predictive models and
+                  MCP-backed agents at CompuCal in Cork.
                 </p>
               </div>
             </div>
@@ -121,11 +121,10 @@ export default function Home() {
             </h2>
             <p data-animate-item className="text-gray-700 dark:text-green-500/80 mb-6 leading-relaxed">
               I started with Python scripts in early 2021, automating crypto trades was the
-              excuse to learn the language. Five years on, the work has settled: production ML
-              for small teams. RAG systems, AI agents with real tool access, and predictive
-              models for tabular and document-heavy problems. After shipping ML features at
-              CompuCal, I&apos;m returning to MTU Cork to complete a Level 8 BSc (Hons) in Software
-              Engineering.
+              excuse to learn the language. Five years on, my focus is AI safety, machine
+              learning and security: AI agents with real tool access, the evaluations that check
+              what they do, and the software security underneath. After shipping ML features at
+              CompuCal, I&apos;m finishing a BSc (Hons) in Software Development at MTU Cork.
             </p>
             <div className="grid md:grid-cols-3 gap-4 text-sm">
               {journeyCards.map((card, index) => (

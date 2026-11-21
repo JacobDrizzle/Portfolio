@@ -2,35 +2,35 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { Database, Bot, LineChart, ScanText, Mail, Github, ExternalLink, Box, ArrowRight, Trophy } from "lucide-react";
+import { ShieldCheck, Bot, Bug, LineChart, Mail, Github, ExternalLink, Box, ArrowRight, Trophy } from "lucide-react";
 import { ActionButton } from "@/components/ui/custom-components";
 import { ML_PROJECTS } from "@/lib/featured-repos";
 import { usePageMotion } from "@/lib/motion";
 
 const capabilities = [
   {
-    icon: Database,
-    title: "RAG Pipelines",
+    icon: ShieldCheck,
+    title: "AI Safety & Evaluation",
     description:
-      "Embeddings, retrieval with confidence scoring, citation surfacing. pgvector, LangChain, FastAPI. Served as REST API or embedded widget.",
+      "My final-year project at MTU Cork is in AI agent safety. I'm interested in how to evaluate agents and keep tool-using agents within the scope they were given.",
   },
   {
     icon: Bot,
-    title: "AI Agents with Real Tool Access",
+    title: "AI Agents with Scoped Tool Access",
     description:
-      "Multi-agent orchestration via CrewAI. MCP servers connecting agents to SQL databases, internal APIs, and documentation repos, not toy chains.",
+      "At CompuCal I built MCP servers that gave internal agents real SQL and API access, alongside multi-agent orchestration with CrewAI. The permissions, tools and evaluation are the hard part.",
+  },
+  {
+    icon: Bug,
+    title: "Software Security",
+    description:
+      "Memory-safety exploits and their defences: stack overflows and format-string bugs on 32-bit Linux, worked through in GDB, and the mitigations that stop them (ASLR, NX, stack canaries).",
   },
   {
     icon: LineChart,
-    title: "Predictive ML for Tabular Data",
+    title: "Production ML",
     description:
-      "Classification, regression, and anomaly detection using CatBoost, XGBoost, LightGBM, and ensembles. Benchmarked against your baseline, not just cross-validated in a notebook.",
-  },
-  {
-    icon: ScanText,
-    title: "OCR & Document Extraction",
-    description:
-      "Structured JSON extraction from scanned PDFs. Azure Document Intelligence or in-house GLM-OCR depending on cost/accuracy tradeoffs.",
+      "RAG with pgvector and LangChain, CatBoost/XGBoost/LightGBM predictive models benchmarked against real baselines, OCR extraction from scanned PDFs, and small, fast models for edge devices.",
   },
 ];
 
@@ -55,6 +55,10 @@ const stackGroups = [
     category: "Databases",
     items: ["PostgreSQL", "pgvector", "SQL Server", "Redis", "MongoDB"],
   },
+  {
+    category: "Security",
+    items: ["GDB", "C & x86 assembly", "Memory-safety exploits", "ASLR / NX / canaries", "Linux"],
+  },
 ];
 
 export default function MLPageContent() {
@@ -78,15 +82,16 @@ export default function MLPageContent() {
               data-animate="intro"
               className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-green-400 mb-6"
             >
-              Production ML,{" "}
-              <span className="text-green-600 dark:text-green-500">Not Notebook Demos</span>
+              AI Safety &amp;{" "}
+              <span className="text-green-600 dark:text-green-500">ML Engineering</span>
             </h1>
             <div
               data-animate="intro"
               className="motion-shift border-l-2 border-green-500 pl-4 mb-8 max-w-3xl"
             >
               <p className="text-xl text-gray-700 dark:text-green-300 leading-relaxed">
-                RAG systems, AI agents, and predictive models that ship to real users.
+                ML systems and AI agents with scoped tool access, plus the evaluation and
+                security work that keeps them in bounds.
               </p>
             </div>
             <div data-animate="intro" className="flex flex-wrap gap-4">
@@ -247,7 +252,7 @@ export default function MLPageContent() {
             <h2 data-animate-item className="text-2xl font-semibold mb-8 text-gray-900 dark:text-green-400">
               Stack
             </h2>
-            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
               {stackGroups.map((group) => (
                 <article
                   key={group.category}
@@ -267,20 +272,19 @@ export default function MLPageContent() {
             </div>
           </section>
 
-          {/* How I work */}
+          {/* What I'm looking for */}
           <section
             data-animate="section"
             className="border-t border-green-300 dark:border-green-500/30 pt-12"
           >
             <h2 data-animate-item className="text-2xl font-semibold mb-6 text-gray-900 dark:text-green-400">
-              How I work
+              What I&apos;m looking for
             </h2>
             <div data-animate-item className="max-w-3xl border-l-2 border-green-500 pl-6">
               <p className="text-gray-700 dark:text-green-500/80 leading-relaxed text-lg">
-                I work async-first and document as I go. Paid 2-hour scoping call before any
-                engagement over 20 hours so we both know the scope is real. Fixed-price for
-                well-defined deliverables, hourly for open-ended exploration. Based in Cork,
-                Ireland, EU business hours with meaningful overlap for US east-coast mornings.
+                Full-time roles in AI safety, ML engineering, software engineering or security.
+                I&apos;m most at home where models meet real systems: agents that act on real
+                data, the evaluations that check what they did, and the security around them.
               </p>
             </div>
           </section>
@@ -291,7 +295,7 @@ export default function MLPageContent() {
             className="border-t border-green-300 dark:border-green-500/30 pt-12"
           >
             <h2 data-animate-item className="text-2xl font-semibold mb-6 text-gray-900 dark:text-green-400">
-              Work together?
+              Hiring?
             </h2>
             <div
               data-animate-item
