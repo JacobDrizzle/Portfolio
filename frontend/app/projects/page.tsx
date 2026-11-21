@@ -180,7 +180,7 @@ export default function Projects() {
             My Projects
           </h1>
           <p className="text-xl text-gray-700 dark:text-green-500/80">
-            ML-first work up top  RAG, agents, and predictive models.
+            AI safety, ML and security work up top.
           </p>
           {isFallback && (
             <p className="mt-3 text-sm text-green-600 dark:text-green-500/70 font-mono">

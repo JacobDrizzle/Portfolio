@@ -17,37 +17,40 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteTitle = "Jacob Dorrill — AI Safety & ML Engineer";
+
 const siteDescription =
-  "ML engineer building production RAG systems, AI agents, and predictive models. Returning to MTU Cork to complete a Level 8 BSc (Hons) in Software Engineering.";
+  "AI safety and ML engineer: AI agents with scoped tool access, evaluation, production ML and software security. Final year of a BSc (Hons) in Software Development at MTU Cork.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.jacobdrizzle.dev"),
   title: {
-    default: "Jacob Dorrill — ML Engineer",
-    template: "%s | Jacob Dorrill — ML Engineer",
+    default: siteTitle,
+    template: `%s | ${siteTitle}`,
   },
   description: siteDescription,
   generator: "Next.js",
-  applicationName: "Jacob Dorrill — ML Engineer",
+  applicationName: siteTitle,
   referrer: "origin-when-cross-origin",
   keywords: [
+    "AI safety",
+    "AI evaluation",
+    "AI agents",
     "ML engineer",
     "machine learning",
-    "RAG",
-    "AI agents",
+    "software security",
+    "cybersecurity",
+    "exploit mitigation",
     "MCP",
+    "RAG",
     "LangChain",
-    "CrewAI",
     "pgvector",
     "CatBoost",
     "XGBoost",
-    "predictive models",
-    "OCR",
+    "PyTorch",
     "Python",
-    "FastAPI",
     "software engineering",
-    "BSc (Hons)",
-    "Level 8",
+    "Software Development",
     "MTU Cork",
     "Cork Ireland",
   ],
@@ -60,10 +63,10 @@ export const metadata: Metadata = {
     telephone: false,
   },
   openGraph: {
-    title: "Jacob Dorrill — ML Engineer",
+    title: siteTitle,
     description: siteDescription,
     url: "https://www.jacobdrizzle.dev",
-    siteName: "Jacob Dorrill — ML Engineer",
+    siteName: siteTitle,
     locale: "en_US",
     type: "website",
   },

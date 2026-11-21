@@ -117,7 +117,7 @@ export default function Contact() {
               Get in Touch
             </h1>
             <p className="text-xl text-gray-700 dark:text-green-500/80">
-              Let&apos;s collaborate on something amazing
+              Open to roles in AI safety, ML engineering and security.
             </p>
           </header>
 
@@ -173,7 +173,8 @@ export default function Contact() {
                   Open for Opportunities
                 </h3>
                 <p className="text-gray-700 dark:text-green-500/80 leading-relaxed">
-                  I&apos;m currently open to work. Let&apos;s discuss how I can contribute to your team!
+                  I&apos;m looking for full-time roles in AI safety, ML engineering, software
+                  engineering and security. Send a message here or reach me on LinkedIn.
                 </p>
               </div>
             </section>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef } from "react";
-import { Database, Bot, LineChart, ScanText, Terminal, Brain, Code } from "lucide-react";
+import { ShieldCheck, Bot, Bug, LineChart, Terminal, Brain, Code } from "lucide-react";
 import { ActionButton } from "@/components/ui/custom-components";
 import { usePageMotion } from "@/lib/motion";
 
@@ -11,31 +11,31 @@ export default function About() {
 
   const passionAreas = [
     {
-      icon: Database,
-      title: "RAG & Retrieval",
-      description: "Embeddings, hybrid search, confidence scoring, and citation surfacing. pgvector in Postgres for most cases, LangChain for orchestration, FastAPI for serving. I care more about evaluation harnesses and retrieval quality than the latest framework."
+      icon: ShieldCheck,
+      title: "AI Safety & Evaluation",
+      description: "My final-year project is in AI agent safety. I'm interested in how to evaluate agents and how to keep tool-using agents within the scope they were given. More on the project once it's graded."
     },
     {
       icon: Bot,
-      title: "AI Agents with Tool Access",
-      description: "Multi-agent orchestration via CrewAI. MCP servers that give agents real read/write access to SQL databases, internal APIs, and documentation. The hard part is the tools and evaluation, the prompts are the easy bit."
+      title: "AI Agents with Scoped Tool Access",
+      description: "MCP servers that give agents real read/write access to SQL databases, internal APIs and documentation, plus multi-agent orchestration with CrewAI. The hard part is the tools, permissions and evaluation; the prompts are the easy bit."
+    },
+    {
+      icon: Bug,
+      title: "Software Security",
+      description: "Memory-safety exploits and their defences from my Security for Software Systems module: stack overflows, format-string bugs, heap attacks, ret2libc and ROP, and the mitigations that stop them. Hands-on in C, x86 assembly and GDB on 32-bit Linux."
     },
     {
       icon: LineChart,
-      title: "Predictive ML",
-      description: "Classification, regression, anomaly detection, and forecasting on tabular data. CatBoost, XGBoost, LightGBM, and ensembles. I benchmark against real baselines with proper validation splits, not just hold-out on a toy dataset."
-    },
-    {
-      icon: ScanText,
-      title: "Document Extraction & OCR",
-      description: "Turning scanned PDFs and messy documents into structured JSON. Azure Document Intelligence when accuracy matters, in-house GLM-OCR when cost matters, and a lot of careful post-processing either way."
+      title: "Production ML",
+      description: "RAG with pgvector and LangChain, CatBoost/XGBoost/LightGBM predictive models benchmarked against real baselines, OCR extraction from scanned PDFs, and the 7,552-parameter TCN that took joint gold at the 9th ABC Challenge."
     }
   ];
 
   const journeyCards = [
     {
       title: "Education",
-      description: "Returning to MTU Cork to complete a Level 8 BSc (Hons) in Software Engineering. QQI Level 6 Advanced Software Development with distinction prior. Focused throughout on systems, algorithms, and applied ML."
+      description: "Final year of a BSc (Hons) in Software Development at MTU Cork, with a final-year project in AI agent safety. QQI Level 6 Advanced Software Development with distinction prior. Joint Gold at the 9th ABC Challenge with MTU team Motion Pending."
     },
     {
       title: "Previous Experience",
@@ -43,7 +43,7 @@ export default function About() {
     },
     {
       title: "Focus",
-      description: "Focused on production ML, retrieval systems, AI agents, and predictive modelling for tabular and document-heavy problems. Comfortable owning a feature from research spike to deployed endpoint."
+      description: "AI safety, machine learning, software engineering and security. Looking for full-time roles where I can build ML systems, test how they behave, and own a feature from research spike to deployed endpoint."
     }
   ];
 
@@ -63,6 +63,10 @@ export default function About() {
     {
       category: "Cloud & Data",
       items: ["PostgreSQL", "pgvector", "Azure", "AWS", "Docker", "Redis", "GitHub Actions"]
+    },
+    {
+      category: "Security",
+      items: ["GDB", "C", "x86 assembly", "Memory-safety exploits", "ASLR / NX / canaries", "Linux"]
     }
   ];
 
@@ -80,14 +84,15 @@ export default function About() {
             </h1>
             <div className="max-w-3xl mx-auto">
               <p data-animate="intro" className="text-xl text-gray-700 dark:text-green-500/80 mb-4 leading-relaxed">
-                ML engineer focused on production retrieval systems, AI agents, and predictive
-                modelling. After shipping ML features at CompuCal in Cork, I&apos;m returning to MTU
-                Cork to complete a Level 8 BSc (Hons) in Software Engineering.
+                AI safety and ML engineer in the final year of a BSc (Hons) in Software
+                Development at MTU Cork, with a final-year project in AI agent safety. Before
+                that I shipped ML features at CompuCal in Cork.
               </p>
               <p data-animate="intro" className="text-base text-gray-600 dark:text-green-500/70 mb-6 leading-relaxed">
                 My programming started in 2021 with Python scripts for crypto trading, which got
                 me interested in blockchain and, later, robotics on the side. Those are past
-                curiosities now, production ML is where the work actually is.
+                curiosities now. These days I work on AI safety, machine learning and software
+                security.
               </p>
               <div data-animate="intro" className="flex justify-center space-x-4">
                 {[Brain, Terminal, Code].map((Icon, index) => (
@@ -127,7 +132,7 @@ export default function About() {
             <h2 data-animate-item className="text-2xl font-semibold mb-6 text-gray-900 dark:text-green-400">
               Technical Arsenal
             </h2>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               {skills.map((category) => (
                 <article
                   key={category.category}
@@ -178,7 +183,7 @@ export default function About() {
           {/* Call to Action */}
           <section data-animate="section" className="text-center">
             <p data-animate-item className="text-xl text-gray-700 dark:text-green-500/80 mb-6">
-              Need an ML contractor for RAG, agents, or predictive modelling? Let&apos;s talk.
+              Hiring for AI safety, ML or security roles? Let&apos;s talk.
             </p>
             <div data-animate-item>
               <ActionButton href="/contact" variant="filled">
