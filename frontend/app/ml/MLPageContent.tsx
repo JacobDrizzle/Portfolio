@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import Link from "next/link";
-import { Database, Bot, LineChart, ScanText, Mail, Github, ExternalLink } from "lucide-react";
+import { Database, Bot, LineChart, ScanText, Mail, Github, ExternalLink, Box, ArrowRight, Trophy } from "lucide-react";
 import { ActionButton } from "@/components/ui/custom-components";
 import { ML_PROJECTS } from "@/lib/featured-repos";
 import { usePageMotion } from "@/lib/motion";
@@ -93,6 +93,71 @@ export default function MLPageContent() {
               <ActionButton href="/contact" variant="filled">
                 Get in touch
               </ActionButton>
+              <ActionButton href="/ml/abc-challenge" variant="outlined">
+                Interactive 3D ABC Challenge Model
+              </ActionButton>
+            </div>
+          </section>
+
+          {/* Featured Interactive 3D Model Showcase */}
+          <section
+            data-animate="section"
+            className="border-t border-green-300 dark:border-green-500/30 pt-12"
+          >
+            <div
+              data-animate-item
+              className="motion-lift relative overflow-hidden rounded-xl border border-green-400 dark:border-green-500/50 bg-gradient-to-br from-green-50 via-emerald-50/60 to-cyan-50/40 dark:from-green-950/25 dark:via-black dark:to-cyan-950/20 p-6 md:p-8 shadow-xl shadow-green-500/10"
+            >
+              <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
+                <div className="space-y-3 max-w-3xl">
+                  <div className="flex flex-wrap items-center gap-2">
+                    <div className="inline-flex items-center gap-2 font-mono text-xs font-semibold px-3 py-1 rounded-full bg-amber-100 dark:bg-amber-400/15 text-amber-800 dark:text-amber-300 border border-amber-300 dark:border-amber-400/40">
+                      <Trophy className="w-3.5 h-3.5" />
+                      <span>Joint Gold · 9th ABC Challenge</span>
+                    </div>
+                    <div className="inline-flex items-center gap-2 font-mono text-xs px-3 py-1 rounded-full bg-green-600/15 dark:bg-green-500/20 text-green-800 dark:text-green-300 border border-green-400/40">
+                      <Box className="w-3.5 h-3.5" />
+                      <span>Live In-Browser 3D Neural Network & Quaternion Sandbox</span>
+                    </div>
+                  </div>
+                  <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-green-300">
+                    9th ABC Challenge: <code className="font-mono">k8_combined</code> (LeanTCNN)
+                  </h2>
+                  <p className="text-gray-700 dark:text-green-400/85 leading-relaxed">
+                    Team Motion Pending&apos;s entry won joint first place, with the fewest parameters
+                    of any team on the organisers&apos; Qualcomm XR device. Explore the
+                    7,555-parameter mirror-equivariant dilated TCN built for 200 ms XR
+                    head-pose prediction on 100 Hz BOXRR-23 Beat Saber streams. Step through the 7
+                    native velocity &amp; head-frame gravity channels, twin{" "}
+                    <code className="font-mono">[[A, B], [B, A]]</code> mirror streams, 393-sample
+                    dilated causal receptive field, damped-velocity prior, and trig-free Cayley map
+                    in real time.
+                  </p>
+                  <div className="flex flex-wrap gap-3 pt-1 font-mono text-xs text-green-700 dark:text-green-300/90">
+                    <span className="px-2.5 py-1 rounded bg-green-500/10 border border-green-500/25">
+                      4.2501 ± 0.0041° Val
+                    </span>
+                    <span className="px-2.5 py-1 rounded bg-green-500/10 border border-green-500/25">
+                      4.2666° Test (200 ms)
+                    </span>
+                    <span className="px-2.5 py-1 rounded bg-green-500/10 border border-green-500/25">
+                      7,555 Params
+                    </span>
+                    <span className="px-2.5 py-1 rounded bg-green-500/10 border border-green-500/25">
+                      46.9–55.2 µs ORT CPU
+                    </span>
+                  </div>
+                </div>
+                <div className="flex-shrink-0">
+                  <Link
+                    href="/ml/abc-challenge"
+                    className="motion-button inline-flex items-center gap-2 px-6 py-3.5 rounded-lg font-mono text-sm font-semibold bg-green-600 dark:bg-green-500 text-white dark:text-black hover:bg-green-500 dark:hover:bg-green-400 shadow-lg shadow-green-500/25 transition-all"
+                  >
+                    <span>Launch 3D Visualizer</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
             </div>
           </section>
 
@@ -134,20 +199,26 @@ export default function MLPageContent() {
               Recent work
             </h2>
             <div className="grid md:grid-cols-2 gap-6">
-              {ML_PROJECTS.map((project) => (
-                <a
+              {ML_PROJECTS.map((project) => {
+                const isInternal = project.url.startsWith("/");
+                return (
+                <Link
                   key={project.title}
                   data-animate-item
                   href={project.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={isInternal ? undefined : "_blank"}
+                  rel={isInternal ? undefined : "noopener noreferrer"}
                   className="motion-lift block border border-green-200 dark:border-green-500/30 rounded-lg p-6 bg-green-50 dark:bg-green-500/5 hover:border-green-400 dark:hover:border-green-500/50 hover:shadow-xl hover:shadow-green-500/10 group"
                 >
                   <div className="flex justify-between items-start mb-3">
                     <h3 className="text-xl font-semibold text-gray-900 dark:text-green-400 group-hover:text-green-600 dark:group-hover:text-green-300 transition-colors">
                       {project.title}
                     </h3>
-                    <ExternalLink className="motion-icon w-5 h-5 text-green-600 dark:text-green-500 flex-shrink-0 ml-3" />
+                    {isInternal ? (
+                      <ArrowRight className="motion-icon w-5 h-5 text-green-600 dark:text-green-500 flex-shrink-0 ml-3" />
+                    ) : (
+                      <ExternalLink className="motion-icon w-5 h-5 text-green-600 dark:text-green-500 flex-shrink-0 ml-3" />
+                    )}
                   </div>
                   <p className="text-gray-700 dark:text-green-500/80 mb-4 leading-relaxed">
                     {project.summary}
@@ -162,8 +233,9 @@ export default function MLPageContent() {
                       </span>
                     ))}
                   </div>
-                </a>
-              ))}
+                </Link>
+                );
+              })}
             </div>
           </section>
 

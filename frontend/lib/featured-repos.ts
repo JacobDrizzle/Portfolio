@@ -11,6 +11,14 @@ export interface MLProject {
 // TODO: Replace the `url` values with the real repo/detail URLs once confirmed.
 export const ML_PROJECTS: MLProject[] = [
   {
+    title: "9th ABC Challenge — XR Head-Pose TCNN (Interactive 3D)",
+    summary:
+      "Joint Gold (1st place) at the 9th ABC Challenge with team Motion Pending (MTU), with the fewest parameters of any team. 7,555-parameter mirror-equivariant separable dilated TCN (k8_combined / LeanTCNN) for 200 ms 6DoF VR head-pose forecasting on BOXRR-23. Achieves 4.2501° validation / 4.2666° test geodesic error in 47–55 µs single-thread ONNX CPU latency. Includes an interactive Three.js 3D architecture & live inference visualizer.",
+    stack: ["PyTorch", "ONNX Runtime", "Three.js", "SO(3) Quaternions", "Equivariant TCN", "TypeScript"],
+    url: "/ml/abc-challenge",
+    repoName: "abc-challenge",
+  },
+  {
     title: "CompuCal ML Platform",
     summary:
       "Production ML features shipped inside CompuCal's regulated calibration-management platform. RAG over internal documentation, OCR pipelines for scanned certificates, predictive-maintenance models, and MCP servers giving AI agents real database access.",
@@ -64,6 +72,7 @@ export const ML_TOPIC_TAGS = [
 // Repo-name allow-list (lowercase). Matches partial — e.g. "finbert" matches
 // "finbert-xgboost-stock". Used as a fallback when topic tags are missing.
 export const ML_REPO_NAME_ALLOWLIST = [
+  "abc-challenge",
   "compucal",
   "revivemap",
   "finbert",
