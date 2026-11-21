@@ -300,7 +300,7 @@ export default function MLPageContent() {
               <div className="flex items-center gap-3 mb-6">
                 <Mail className="w-5 h-5 text-green-600 dark:text-green-500" />
                 <a
-                  href="mailto:jacobdorrill@gmail.com"
+                  href="mailto:jd_git@protonmail.com"
                   className="text-lg text-gray-700 dark:text-green-300 hover:text-green-600 dark:hover:text-green-400 transition-colors font-mono"
                 >
                   jd_git@protonmail.com
