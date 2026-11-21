@@ -52,8 +52,13 @@ export const ML_PROJECTS: MLProject[] = [
   },
 ];
 
-// Topic tags that mark a GitHub repo as ML/AI work for the /projects sort.
+// Topic tags that mark a GitHub repo as ML/AI, safety or security work for the /projects sort.
 export const ML_TOPIC_TAGS = [
+  "ai-safety",
+  "alignment",
+  "evals",
+  "security",
+  "cybersecurity",
   "machine-learning",
   "ml",
   "ai",
