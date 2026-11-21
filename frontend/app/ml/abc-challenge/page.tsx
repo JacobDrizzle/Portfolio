@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   title,
   description,
   openGraph: {
-    title: `${title} | Jacob Dorrill — ML Engineer`,
+    title: `${title} | Jacob Dorrill — AI Safety & ML Engineer`,
     description,
     url: "https://www.jacobdrizzle.dev/ml/abc-challenge",
     type: "website",
